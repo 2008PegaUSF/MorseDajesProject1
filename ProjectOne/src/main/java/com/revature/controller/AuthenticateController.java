@@ -10,6 +10,8 @@ public class AuthenticateController {
 
 	public static void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Login Poggers");
+		
+		System.out.println(request.getParameter("username"));
 	}
 	
 	public static void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
