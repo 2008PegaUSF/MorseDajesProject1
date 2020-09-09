@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-color: #94B1D1;
     text-align: center;
@@ -155,4 +156,163 @@ button:focus {
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-gap: 0px;
+=======
+body {
+    background-color: #94B1D1;
+    text-align: center;
+}
+
+.fright {
+    float: right;
+}
+
+#navbar {
+    background-color: #001933;
+    height: 45px;
+    width: 100%;
+    padding: 12px 15px 10px;
+}
+
+#brand {
+    font-family: 'Gayathri', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    float: left;
+    color: white; 
+    letter-spacing: 2px;
+}
+
+#rightNavbar {
+    float: right;
+    margin-top: 0;
+    height: 33px;
+}
+
+li.nav{
+    float: left;
+    list-style: none;
+    margin-left: 10px;
+}
+
+#greeting {
+    color: white;
+}
+
+#logout {
+    background-color: #001933;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+button {
+    background-color: #2E489E;
+    color: #f7f7f7;
+    border: none;
+}
+
+h1 {
+    margin-top: 12rem;
+    font-family: 'Gayathri', sans-serif;
+    font-size: 200px;
+    font-weight: 400;
+}
+
+#subheading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: -.75in;
+    margin-bottom: 0.25in;
+}
+
+.signIn {
+    height: 42px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+form {
+    display: inline-block;
+}
+
+input {
+    margin-right: 20px;
+    height: 40px;
+    border-radius: 3px;
+    border:none;
+}
+
+input:focus {
+    outline: none !important;
+    border: 3px solid #5eb9e0;
+    box-shadow: 0 0 10px #719ECE;
+    
+}
+label {
+    display: inline-block;
+    text-align: right;
+    font-size: 20px;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+.bg-dark {
+    background-color: #001933!important;
+}
+
+.dashboardTab {
+    border: none;
+    height: 1in;
+    width: 2in;
+    float: left;
+    margin: 0px;
+    font-family: sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 2px 1px 4px black;
+}
+
+#dashboard {
+    margin: 6% 10% 7%;
+}
+
+#tabs td {
+    border: 2px solid rgb(41, 41, 41);
+    border-right: none;
+    padding: 0px;
+}
+
+#contentHolder {
+    height: 6.115in;
+    width: 100%;
+    background-color:#F5F9FF;
+    float: inline-start;
+    padding: 20px 20px;
+    overflow: scroll;
+    text-align: left;
+}
+
+.heading {
+    text-align: center;
+}
+
+.subheading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#contents p {
+    text-align: left;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 0px;
+>>>>>>> 405498ec55221c8ac629fcf2bb971561b1a7fdf8
 }
