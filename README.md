@@ -2,7 +2,7 @@
 
 Logins
 |Usernames|Passwords|
-|---------|
+|---------|---------|
 |Jesse|Jesse|
 |Seth|TheBenco|
 |Morgen|DeptDeputy|
