@@ -1,8 +1,8 @@
 # MorseDajesProject1
 
 Logins
-|Usernames|Passwords|Role|
-|---------|---------|----|
+|Username|Password|Role|
+|:--------|:--------|:----|
 |Jesse|Jesse|Direct Supervisor|
 |Seth|TheBenco|Benefits Coordinator|
 |Morgen|DeptDeputy|Department Head|
