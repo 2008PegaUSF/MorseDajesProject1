@@ -13,11 +13,13 @@ public class MasterServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//RequestHelper.function(request,response);
+		//RequestHelper.process(request,response);
+		System.out.println("Get Poggers");
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//RequestHelper.function(request,response);
+		//RequestHelper.process(request,response);
+		System.out.println("Post Poggers");
 	}
 }
