@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +17,7 @@
         </span>
         <ul id="rightNavbar" class="fright">
             <li class="nav">
-                <h5 id="greeting">Hello, username</h5>
+                <h5 id="greeting"></h5>
             </li>
             <li class="nav">
                 <button id="logout">Log out</button>
@@ -63,66 +62,98 @@
             </div>
             <div id="contentHolder">
                 <h2 class="heading">Tuition Reimbursement Request Form</h2>
-                <h6 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h6>
+                <h5 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h5>
                 <form>
                     <div class="form-row">
                         <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="First name" required="required">
+                          <input type="text" class="form-control" name="firstName" placeholder="First name" required>
                         </div>
                         <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="Last name" required="required">
+                          <input type="text" class="form-control" name="lastName" placeholder="Last name" required>
                         </div>
                     </div>
-                    <h5>Event Details</h5>
+                    <h5>-- Event Details --</h5>
                     <div class="form-row">
                         <div class="form-group col">
-                          <input type="date" class="form-control" required="required">
+                          <input type="date" class="form-control" name="eventDate" required>
                         </div>
                         <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                          <input type="address" class="form-control" required="required">
+                            <input type="time" class="form-control" name="eventTime" required>
                         </div>
-                        <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                          <input type="text" class="form-control" name="location" placeholder="123 Main St, Townsville, Texas 75007" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cost" class="rform">Cost:</label>
+                            <input nametype="number" class="form-control" name="cost" placeholder="0.00" required>
                         </div>
                         <div class="form-group col">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <label for="eventType" class="rform">Event Type:</label>
+                            <select class="form-control" name="eventType" required>
+                                <option>University course</option>
+                                <option>Seminar</option>
+                                <option>Certification prep</option>
+                                <option>Certification</option>
+                                <option>Technical training</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="gradingFormat" class="rform">Grading Format:</label>
+                            <select class="form-control" name="gradingFormat">
+                                <option>Grade</option>
+                                <option>Presentation</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="description" class="rform">Event Description:</label>
+                            <textarea class="form-control" name="description" rows="3" required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Example textarea</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="justification" class="rform">Work-Related Justification:</label>
+                            <textarea class="form-control" name="justification" rows="3" required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <h5>-- Optional Information --</h5>
+                    <div class="form-row">
+                        <div class="form-group col attachments">
+                            <label for="eventFile" class="rform">Event-related attachments:</label>
+                            <p>(.pdf, .png, .jpeg, .txt, or .doc)</p>
+                            <input type="file" name="eventFile" class="form-control-file">
+                        </div>
+                        <div class="form-group col attachments">
+                            <label for="approvalFile" class="rform">Reimbursement approval (.msg only):</label>
+                            <input type="file" name="approvalFile" class="form-control-file">
+                            <label for="approvalType" class="rform">Approval Type:</label>
+                            <select class="form-control" name="approvalType">
+                                <option>Direct supervisor</option>
+                                <option>Department head</option>
+                                <option>Benefits Coordinator</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label for="missedHours" class="rform">Missed work time (in hours):</label>
+                            <input type="number" name="missedHours" class="form-control-file">
+                        </div>
                     </div>
-                  </form>
+                    <div class="form-row bottomrow">
+                        <div class="form-group col">
+                            <h5 id="projection">Projected Reimbursement: $0.00</h5>
+                        </div>
+                        <div class="form-group col">
+                            <input type="submit" class="form-control">
+                        </div>
+                    </div>
+                </form>
+               
             </div>
         </div>
     <!-- Optional JavaScript -->
@@ -131,138 +162,4 @@
     <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
-=======
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Employee Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Manrope:wght@400;500;600&family=Gayathri&family=Lato&family=Montserrat&family=Nunito:wght@400;600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="trp.css">
-  </head>
-  <body>
-    <div id="navbar">
-        <span>
-            <h4 id="brand">TRP</h4>
-        </span>
-        <ul id="rightNavbar" class="fright">
-            <li class="nav">
-                <h5 id="greeting">Hello, username</h5>
-            </li>
-            <li class="nav">
-                <button id="logout">Log out</button>
-            </li>
-        </ul>
-    </div>
-
-        <div id="dashboard" class="grid-container">
-            <div>
-                <table id="tabs">
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Reimbursements 101</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Available Funds</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Request Status</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Create Reimbursement Request</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Upload Grade/ Presentation</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Grades/ Presentations</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="contentHolder">
-                <h2 class="heading">Tuition Reimbursement Request Form</h2>
-                <h6 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h6>
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="First name" required="required">
-                        </div>
-                        <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="Last name" required="required">
-                        </div>
-                    </div>
-                    <h5>Event Details</h5>
-                    <div class="form-row">
-                        <div class="form-group col">
-                          <input type="date" class="form-control" required="required">
-                        </div>
-                        <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                          <input type="address" class="form-control" required="required">
-                        </div>
-                        <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                        </div>
-                        <div class="form-group col">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Example textarea</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                  </form>
-            </div>
-        </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  </body>
->>>>>>> 405498ec55221c8ac629fcf2bb971561b1a7fdf8
 </html>
