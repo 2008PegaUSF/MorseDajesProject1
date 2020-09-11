@@ -25,18 +25,17 @@ public class RequestsDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	public List<Requests> getRequests() throws SQLException {
-			List<Requests> rList=new ArrayList<Requests>();
-			Connection conn=cf.getConnection();
-			Statement stmt= conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
-			Requests a=null;
-			while(rs.next()) {
-				a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
-				rList.add(a);}
-			System.out.println(rList);
-			return rList;
-		}
-
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt= conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
 
 	public List<Pending> getPendings() throws SQLException {
 		List<Pending> rList=new ArrayList<Pending>();

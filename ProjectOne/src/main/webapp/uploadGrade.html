@@ -27,31 +27,34 @@
         </ul>
     </div>
 
-        <div id="dashboard" class="grid-container">
+                <div id="dashboard" class="grid-container">
             <div>
+            <form method ="post" action="navigate">
                 <table id="tabs">
                     <tr>
                         <td>
-                            <button class="dashboardTab">Reimbursements 101</button>
+                            <button class="dashboardTab" name="button" value="1">Reimbursements 101</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="dashboardTab">Create Reimbursement Request</button>
+                            <button class="dashboardTab" name="button" value="2">Create Reimbursement Request</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="dashboardTab">Upload Grade/ Presentation</button>
+                            <button class="dashboardTab" name="button" value="3">Upload Grade/ Presentation</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="dashboardTab">View Grades/ Presentations</button>
+                            <button class="dashboardTab" name="button" value="4">View Grades/ Presentations</button>
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
+
             <div id="contentHolder">
                 <h2 class="heading">Upload Grade/Presentation</h2>
                 <h6 class="subheading">Please select the reimbursement request you would like to submit a grade/presentation for, then select grading format.</h6>
