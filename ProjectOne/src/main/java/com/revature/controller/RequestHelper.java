@@ -20,6 +20,10 @@ public class RequestHelper {
 		case "/ProjectOne/api/logout":
 			AuthenticateController.logout(request, response);
 			break;
+		case "/ProjectOne/api/navigate":
+			NavigateController.getNavigation(request, response);
+			break;
+
 		case "/ProjectOne/api/submitRequest":
 			EmployeeController.getRequestForm(request, response);
 			break;
