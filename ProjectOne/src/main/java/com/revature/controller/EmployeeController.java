@@ -1,21 +1,25 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.revature.daoimpl.RequestsDaoImpl;
 
 public class EmployeeController {
 
 	public static void getRequestForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//Get all form inputs
+		//firstName, lastName, eventDate, eventTime, location, cost, eventType, gradingFormat, description, justification 
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		
-		String date = request.getParameter("date");
-		String time = request.getParameter("time");
+		String date = request.getParameter("eventDate");
+		String time = request.getParameter("eventTime");
 		String location = request.getParameter("location");
 		
 		String description = request.getParameter("description");
@@ -24,12 +28,17 @@ public class EmployeeController {
 		String eventType = request.getParameter("eventType");
 		String justification = request.getParameter("justification");
 		
-		//Jesse's logic here; Probably passing all of the above strings as arguments in a Request object constructor
+		date = "'"+date+"'";
+		time = "'"+time+":00'";
 		
-		//Method to insert all of the (necessary) input values into the 'requests' table in DB.
-		//If first & last names are not part of the requests table, an additional query will have to be made first to locate the userid.
+		RequestsDaoImpl rdi = new RequestsDaoImpl();
+		try {
+			rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,1,justification,time,date);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		request.getRequestDispatcher("/submitRequest").forward(request, response);
+		request.getRequestDispatcher("api/login").forward(request, response);//This kicks you to the front page currently
 	}
 	
 	public static void getGrade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

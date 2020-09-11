@@ -1,6 +1,10 @@
 --Create DB
 create database trms;
 
+--Testing
+select current_date;
+INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE)values(current_date,'Jamaica','No',100.0,'Hard','Big',4,current_time,'I have big stupid','20:01:51','2020-09-10')
+
 --Create Tables
 create table users (
 	userid serial primary key,

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.beans.Logins;
+import com.revature.daoimpl.RequestsDaoImpl;
 import com.revature.daoimpl.UsersDaoImpl;
 
 public class AuthenticateController {

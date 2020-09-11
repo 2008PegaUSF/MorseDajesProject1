@@ -1,12 +1,16 @@
 package com.revature.daoimpl;
 
-import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.revature.beans.Awarded;
 import com.revature.beans.BencoApproved;
@@ -146,23 +150,23 @@ public class RequestsDaoImpl {
 		return rList;		
 	}
 
-	public void createRequest(String requestDate, String location, String description, double cost,
-			String gradingFormat, String eventType, int userId, String requestTime, String justification,
-			String eventTime, String eventDate) throws SQLException {
-	Connection conn=cf.getConnection();
-	PreparedStatement pstmt=conn.prepareStatement("INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE)values(?.?.?.?.?.?.?.?.?.?.?");
-	pstmt.setString(1,requestDate);
-	pstmt.setString(2,location);
-	pstmt.setString(3,description);
-	pstmt.setDouble(4, cost);
-	pstmt.setString(5, gradingFormat);
-	pstmt.setString(6,eventType);
-	pstmt.setInt(7,userId);
-	pstmt.setString(8, requestTime);
-	pstmt.setString(9,justification);
-	pstmt.setString(10,eventTime);
-	pstmt.setString(11,eventDate);
-	pstmt.execute();
+	public void createRequest(String location, String description, double cost,
+		String gradingFormat, String eventType, int userId, String justification,
+		String eventTime, String eventDate) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("insert into requests(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE) "
+				+ "values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+")");
+		pstmt.setString(1,location);
+		pstmt.setString(2,description);
+		pstmt.setDouble(3, cost);
+		pstmt.setString(4, gradingFormat);
+		pstmt.setString(5,eventType);
+		pstmt.setInt(6,userId);
+		pstmt.setString(7,justification);
+		//pstmt.setTime(8, eventTime); Date and Time are coming from a form with restricted values (not open to injection)
+		//pstmt.setDate(9,eventDate);
+		System.out.println(pstmt.toString());
+		pstmt.execute();
 	}
 
 	public void createAwarded(int id) throws SQLException {
@@ -201,11 +205,9 @@ public class RequestsDaoImpl {
 	}
 
 	public void deletePending(int id) throws SQLException {
-	Connection conn=cf.getConnection();
-	PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
-	pstmt.setInt(1, id);
-	pstmt.execute();
-		
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
 	}
-
 }
