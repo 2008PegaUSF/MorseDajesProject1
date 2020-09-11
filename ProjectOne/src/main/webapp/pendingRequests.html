@@ -20,27 +20,27 @@
                 <h5 id="greeting"></h5>
             </li>
             <li class="nav">
-                <form action="logout" method="post">
-            		<button type="submit" id="logout">Log out</button>
-            	</form>
+                <button id="logout">Log out</button>
             </li>
         </ul>
     </div>
 
-        <div id="dashboard" class="grid-container">
+       <div id="dashboard" class="grid-container">
             <div>
+            <form method = "post" action="navigate">
                 <table id="tabs">
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Reimbursement Requests</button>
+                            <button class="supDashboardTab" name="button" value="6">Pending Reimbursement Requests</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Grades/ Presentations</button>
+                            <button class="supDashboardTab" name="button" value="5">Pending Grades/ Presentations</button>
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div id="contentHolder">
                 <h2 class="heading">Pending Reimbursement Requests</h2>
