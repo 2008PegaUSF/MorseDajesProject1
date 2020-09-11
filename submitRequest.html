@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Manrope:wght@400;500;600&family=Gayathri&family=Lato&family=Montserrat&family=Nunito:wght@400;600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gayathri&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="trp.css">
   </head>
   <body>
@@ -31,16 +31,6 @@
                     <tr>
                         <td>
                             <button class="dashboardTab">Reimbursements 101</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Available Funds</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Request Status</button>
                         </td>
                     </tr>
                     <tr>
@@ -103,11 +93,15 @@
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="gradingFormat" class="rform">Grading Format:</label>
-                            <select class="form-control" name="gradingFormat">
-                                <option>Grade</option>
-                                <option>Presentation</option>
-                            </select>
+                            <p class="rform">Grading Format:</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="grade" name="gradingFormat" value="grade">
+                                <label for="grade" class="custom-control-label rform">Grade</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="presentation" name="gradingFormat" value="presentation"> 
+                                <label for="presentation" class="custom-control-label rform">Presentation</label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -132,7 +126,7 @@
                         <div class="form-group col attachments">
                             <label for="approvalFile" class="rform">Reimbursement approval (.msg only):</label>
                             <input type="file" name="approvalFile" class="form-control-file">
-                            <label for="approvalType" class="rform">Approval Type:</label>
+                            <label for="approvalType" class="rform">Approved by:</label>
                             <select class="form-control" name="approvalType">
                                 <option>Direct supervisor</option>
                                 <option>Department head</option>
