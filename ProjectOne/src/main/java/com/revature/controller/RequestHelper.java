@@ -17,27 +17,21 @@ public class RequestHelper {
 		case "/ProjectOne/api/login":
 			AuthenticateController.login(request, response);
 			break;
-			
 		case "/ProjectOne/api/logout":
 			AuthenticateController.logout(request, response);
 			break;
-		
 		case "/ProjectOne/api/submitRequest":
 			EmployeeController.getRequestForm(request, response);
 			break;
-			
 		case "/ProjectOne/api/uploadGrade":
 			EmployeeController.getGrade(request, response);
 			break;
-			
 		case "/ProjectOne/api/pendingRequests":
 			SupervisorController.recordRequestVerdict(request, response);
 			break;
-			
 		case "/ProjectOne/api/pendingGrades":
 			SupervisorController.recordGradeVerdict(request, response);
 			break;
-			
 		default:
 			HomeController.getLoginPage(request,response);
 			break;

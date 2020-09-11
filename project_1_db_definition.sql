@@ -18,10 +18,6 @@ create table logins (
 	userid int
 );
 
-alter table requests
-add requesttime time,
-add justification varchar;
-
 create table requests (
 	requestid serial primary key,
 	requestdate date,

@@ -1,10 +1,22 @@
 body {
     background-color: #94B1D1;
+    /* background-color:#d5e3f7; */
+    /* background-image: url("pencils.jpg"); */
+    background-position: center;
+    background-size: cover;
     text-align: center;
 }
 
 .fright {
     float: right;
+}
+
+.fleft {
+    float: left;
+}
+
+.taleft {
+    text-align: left;
 }
 
 #navbar {
@@ -16,7 +28,7 @@ body {
 
 #brand {
     font-family: 'Gayathri', sans-serif;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 400;
     float: left;
     color: white; 
@@ -37,6 +49,12 @@ li.nav{
 
 #greeting {
     color: white;
+}
+
+#failedLogin {
+    color: red;
+    margin-top: 30px;
+    margin-left: -4%;
 }
 
 #logout {
@@ -118,8 +136,23 @@ button:focus {
     text-shadow: 2px 1px 4px black;
 }
 
+.supDashboardTab {
+    border: none;
+    height: 3in;
+    width: 2in;
+    float: left;
+    margin: 0px;
+    font-family: sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 2px 1px 4px black;
+}
+
 #dashboard {
-    margin: 6% 10% 7%;
+    /* margin: 6% 10% 7%; */
+    height: 90%;
+    width: 80%;
+    margin: 7% 10% 3%;   
 }
 
 #tabs td {
@@ -129,13 +162,14 @@ button:focus {
 }
 
 #contentHolder {
-    height: 6.115in;
+    height: 100%;  
     width: 100%;
     background-color:#F5F9FF;
     float: inline-start;
     padding: 20px 20px;
-    overflow: scroll;
-    text-align: left;
+    overflow: scroll!important;
+    text-align: center;
+    max-height: 6.115in;
 }
 
 .heading {
@@ -153,6 +187,56 @@ button:focus {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 100fr;
     grid-gap: 0px;
+}
+
+.rform {
+    font-size: 12pt;
+}
+
+.attachments {
+    text-align: left;
+}
+
+.bottomrow {
+
+    display: inline;
+}
+
+#upload {
+    margin-top: 15%;
+}
+
+.supTable {
+    width: 200%;
+    border: 2px solid grey;
+}
+
+.supTable th {
+    padding: 10px;
+    min-width: .7in;
+    border: 3px solid grey;
+    text-align: center;
+}
+
+.supTable td {
+    padding: 10px;
+    border: 3px solid grey;
+}
+
+.supTable tr:nth-child(odd) {
+    background-color: #c7c6f7;
+}
+
+.supTable tr:nth-child(even) {
+    background-color: #e8e8ff;
+}
+
+.contain {
+    max-width: 80%;
+}
+
+#grades {
+    width: fit-content;
 }
