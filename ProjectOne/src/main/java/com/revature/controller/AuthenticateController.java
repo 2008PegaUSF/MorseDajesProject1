@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Logins;
+import com.revature.beans.Users;
 import com.revature.daoimpl.UsersDaoImpl;
 
 public class AuthenticateController {
@@ -21,9 +22,10 @@ public class AuthenticateController {
 		String password = request.getParameter("password");
 		
 		Logins l = null;
+		Users u = null;
 		try {
 			l = udi.getLoginByName(username);
-			System.out.println(l.getUserId());
+			u = udi.getUserByUserId(l.getUserId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -32,12 +34,21 @@ public class AuthenticateController {
 			RequestDispatcher rd = request.getRequestDispatcher("api/*"); //What is the request dispatcher? What does it do?
 			rd.forward(request, response);
 		} else if (l.getPassword().equals(password)) { //Valid Login
-			RequestDispatcher rd = request.getRequestDispatcher("/submitRequest.html"); //What is the request dispatcher? What does it do?
-			
-			HttpSession sesh = request.getSession();//Create a session w/ the user id
-			sesh.setAttribute("userid", new Integer(l.getUserId()));
-			
-			rd.forward(request, response);
+			if (u.getUsertype().equals("Employee")) {//Go to submission page if you're an employee
+				RequestDispatcher rd = request.getRequestDispatcher("/submitRequest.html");
+				
+				HttpSession sesh = request.getSession();//Create a session w/ the user id
+				sesh.setAttribute("userid", new Integer(l.getUserId()));
+				
+				rd.forward(request, response);
+			} else {//Go to the view page otherwise
+				RequestDispatcher rd = request.getRequestDispatcher("/pendingRequests.html");
+				
+				HttpSession sesh = request.getSession();//Create a session w/ the user id
+				sesh.setAttribute("userid", new Integer(l.getUserId()));
+				
+				rd.forward(request, response);
+			}
 		} else { //Password doesn't match
 			RequestDispatcher rd = request.getRequestDispatcher("api/*"); //What is the request dispatcher? What does it do?
 			rd.forward(request, response);

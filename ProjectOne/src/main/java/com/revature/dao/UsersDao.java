@@ -11,7 +11,7 @@ public interface UsersDao {
 	public List<Users> getUsers() throws SQLException;
 	public List<Users> getUsersByRequestId(int id) throws SQLException;
 	public Users getUser(int id);
-	public void getLoginById(int id)throws SQLException;
+	public Logins getLoginById(int id)throws SQLException;
 	public void login() throws SQLException;
 	public void register() throws SQLException;
 	public void changeUsername(String n, String p) throws SQLException;
