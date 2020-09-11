@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Manrope:wght@400;500;600&family=Gayathri&family=Lato&family=Montserrat&family=Nunito:wght@400;600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gayathri&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/ProjectOne/trp.css">
   </head>
   <body>
@@ -20,7 +20,7 @@
                 <h5 id="greeting"></h5>
             </li>
             <li class="nav">
-            	<form action="logout" method="post">
+                <form action="logout" method="post">
             		<button type="submit" id="logout">Log out</button>
             	</form>
             </li>
@@ -33,16 +33,6 @@
                     <tr>
                         <td>
                             <button class="dashboardTab">Reimbursements 101</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Available Funds</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Request Status</button>
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +55,7 @@
             <div id="contentHolder">
                 <h2 class="heading">Tuition Reimbursement Request Form</h2>
                 <h5 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h5>
-                <form method="post" action="submitRequest">
+                <form>
                     <div class="form-row">
                         <div class="form-group col">
                           <input type="text" class="form-control" name="firstName" placeholder="First name" required>
@@ -105,11 +95,15 @@
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label for="gradingFormat" class="rform">Grading Format:</label>
-                            <select class="form-control" name="gradingFormat">
-                                <option>Grade</option>
-                                <option>Presentation</option>
-                            </select>
+                            <p class="rform">Grading Format:</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="grade" name="gradingFormat" value="grade">
+                                <label for="grade" class="custom-control-label rform">Grade</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="presentation" name="gradingFormat" value="presentation"> 
+                                <label for="presentation" class="custom-control-label rform">Presentation</label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -134,7 +128,7 @@
                         <div class="form-group col attachments">
                             <label for="approvalFile" class="rform">Reimbursement approval (.msg only):</label>
                             <input type="file" name="approvalFile" class="form-control-file">
-                            <label for="approvalType" class="rform">Approval Type:</label>
+                            <label for="approvalType" class="rform">Approved by:</label>
                             <select class="form-control" name="approvalType">
                                 <option>Direct supervisor</option>
                                 <option>Department head</option>
@@ -159,10 +153,9 @@
             </div>
         </div>
     <!-- Optional JavaScript -->
-    <!-- <script type="text/javascript" src="http://localhost:8080/ProjectOne/submitRequest.js"></script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <!--<script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
 </html>
