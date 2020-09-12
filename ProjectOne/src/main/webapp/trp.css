@@ -152,7 +152,7 @@ button:focus {
 }
 
 #dashboard {
-    height: 90%;
+    height: 6in;
     width: 80%;
     margin: 7% 10% 3%; 
     box-shadow: -1px 3px 30px 1px black;

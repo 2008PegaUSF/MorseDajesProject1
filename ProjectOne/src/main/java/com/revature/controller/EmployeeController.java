@@ -1,7 +1,14 @@
 package com.revature.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.servlet.http.Part;
+import org.apache.commons.io.IOUtils;
+import javax.servlet.annotation.MultipartConfig;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.daoimpl.RequestsDaoImpl;
+import com.revature.util.ConnFactory;
 
+@javax.servlet.annotation.MultipartConfig
 public class EmployeeController {
 
 	public static void getRequestForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,7 +30,9 @@ public class EmployeeController {
 		} else {
 			int userid = (int) sesh.getAttribute("userid");
 			
-			//Get all form inputs		
+			//Get all form inputs
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
 			String date = request.getParameter("eventDate");
 			String time = request.getParameter("eventTime");
 			String location = request.getParameter("location");
@@ -37,7 +48,7 @@ public class EmployeeController {
 			
 			RequestsDaoImpl rdi = new RequestsDaoImpl();
 			try {
-				rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,userid,justification,time,date);
+				rdi.createRequest(location, description, Double.parseDouble(cost), gradingFormat, eventType, userid, justification, time, date, firstName, lastName);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -46,11 +57,47 @@ public class EmployeeController {
 		}
 	}
 	
+
 	public static void getGrade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Get uploaded file, store it somewhere...as serialized data in DB? Need clarification on this.
-		
-		request.getRequestDispatcher("/uploadGrade").forward(request, response);
+		HttpSession sesh = request.getSession(false);
+		if (sesh == null) {
+			request.getRequestDispatcher("api/*").forward(request, response);
+			System.out.println("Not Logged In");
+		} else {
+			
+			//Get the value of the request ID from the radio button selected
+			String[] requestIdVal = request.getParameterValues("selection");
+			//Convert to int
+			int requestID = Integer.parseInt(requestIdVal[0]);
+			
+			//Get grading format
+			String format = request.getParameter("gradingFormat");
+			
+			//Get file <input type="file" name="gradeFile">
+		    Part file = request.getPart("gradeFile"); 
+		    String fileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
+		    
+		    //Convert to byte array
+		    InputStream fileStream = file.getInputStream();
+		    byte[] bytes = IOUtils.toByteArray(fileStream);
+		    
+		    ConnFactory cf = ConnFactory.getInstance();
+		    Connection conn = cf.getConnection();
+			try {
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO gradespresentations VALUES (?, ?, ?, ?)");
+				ps.setInt(1, requestID);
+				ps.setString(2, format);
+				ps.setString(3, fileName);
+				ps.setBytes(4, bytes);
+				ps.executeUpdate();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			request.getRequestDispatcher("/uploadGrade.html").forward(request, response);
+		}
 		
 	}
 

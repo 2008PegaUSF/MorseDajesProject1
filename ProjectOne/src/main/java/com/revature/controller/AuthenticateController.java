@@ -33,7 +33,7 @@ public class AuthenticateController {
 		}
 		
 		if (l == null) { //Username is invalid
-			RequestDispatcher rd = request.getRequestDispatcher("api/*"); //What is the request dispatcher? What does it do?
+			RequestDispatcher rd = request.getRequestDispatcher("api/*");//What is the request dispatcher? What does it do?
 			rd.forward(request, response);
 			
 		} else if (l.getPassword().equals(password)) { //Valid Login
