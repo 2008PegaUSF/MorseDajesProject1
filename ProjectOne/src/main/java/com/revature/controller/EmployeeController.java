@@ -40,6 +40,8 @@ public class EmployeeController {
 			RequestsDaoImpl rdi = new RequestsDaoImpl();
 			try {
 				rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,userid,justification,time,date,firstName,lastName);
+				int id = rdi.getLastRequest().getRequestid();
+				rdi.createPending(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

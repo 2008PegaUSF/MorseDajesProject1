@@ -31,20 +31,32 @@ public class RequestsDaoImpl {
 		while(rs.next()) {
 			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			rList.add(a);}
-		System.out.println(rList);
+		//System.out.println(rList);
 		return rList;
 	}
+	
+	public Requests getLastRequest() throws SQLException {
+		Connection conn=cf.getConnection();
+		Statement stmt= conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
+		Requests a=null;
+		while(rs.next()) {
+			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+		}
+		return a;
+	}
 
-	public List<Pending> getPendings() throws SQLException {
-		List<Pending> rList=new ArrayList<Pending>();
+	public List<Requests> getPendings() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDING");
-		Pending a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from pending);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new Pending(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
@@ -56,7 +68,8 @@ public class RequestsDaoImpl {
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
-			rList.add(a);}		
+			rList.add(a);
+		}		
 		GsonBuilder gboi=new GsonBuilder();
 		Gson gson=gboi.create();			 
 		String JSONObject=gson.toJson(rList);		
@@ -66,86 +79,176 @@ public class RequestsDaoImpl {
 	}
 	
 	public String getPendingsJSON() throws SQLException {		
-		List<Pending> rList=new ArrayList<Pending>();
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDING");
-		Pending a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from pending);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new Pending(rs.getInt(1));
-			rList.add(a);}
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
 		GsonBuilder gboi=new GsonBuilder();
 		Gson gson=gboi.create();			 
 		String JSONObject=gson.toJson(rList);		
 	//	System.out.println(JSONObject);
-		return JSONObject;
-		
+		return JSONObject;	
 	}
 	
-	public List<SupervisorApproved> getSuperApproveds() throws SQLException {
-		List<SupervisorApproved> rList=new ArrayList<SupervisorApproved>();
+	public String getSupervisorApprovedJSON() throws SQLException {		
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM SupervisorApproved");
-		SupervisorApproved a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from supervisorapproved);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new SupervisorApproved(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public String getDepartmentHeadApprovedJSON() throws SQLException {		
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from departheadapproved);");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public String getBenefitsCoordinatorApprovedJSON() throws SQLException {		
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from bencoapproved);");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public String getAwardedJSON() throws SQLException {		
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from awarded);");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public String getDeniedJSON() throws SQLException {		
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from denied);");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public List<Requests> getSuperApproveds() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from supervisorapproved);");
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
-	public List<DepartheadApproved> getDepartheadApproveds() throws SQLException {
-		List<DepartheadApproved> rList=new ArrayList<DepartheadApproved>();
+	public List<Requests> getDepartheadApproveds() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM DepartheadApproved");
-		DepartheadApproved a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from departheadapproved);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new DepartheadApproved(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
 
-	public List<BencoApproved> getBencoApproved() throws SQLException {
-		List<BencoApproved> rList=new ArrayList<BencoApproved>();
+	public List<Requests> getBencoApproved() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM BencoApproved");
-		BencoApproved a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from bencoapproved);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new BencoApproved(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
 
-	public List<Denied> getDenieds() throws SQLException {
-		List<Denied> rList=new ArrayList<Denied>();
+	public List<Requests> getDenied() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM Denied");
-		Denied a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from denied);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new Denied(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
-	public List<Awarded> getAwarded() throws SQLException {
-		List<Awarded> rList=new ArrayList<Awarded>();
+	public List<Requests> getAwarded() throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM Awarded");
-		Awarded a=null;
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from awarded);");
+		Requests a=null;
 		while(rs.next()) {
-			a=new Awarded(rs.getInt(1));
-			rList.add(a);}
-		System.out.println(rList);
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}		
+		//System.out.println(rList);
 		return rList;
 	}
 
@@ -159,7 +262,7 @@ public class RequestsDaoImpl {
 		while(rs.next()) {
 			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			}
-		System.out.println(a);
+		//System.out.println(a);
 		return a;//re
 	}
 
