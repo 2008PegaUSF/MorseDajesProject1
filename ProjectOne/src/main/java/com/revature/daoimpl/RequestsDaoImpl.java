@@ -29,7 +29,7 @@ public class RequestsDaoImpl {
 		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
 		Requests a=null;
 		while(rs.next()) {
-			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			rList.add(a);}
 		System.out.println(rList);
 		return rList;
@@ -55,7 +55,7 @@ public class RequestsDaoImpl {
 		ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
 		Requests a=null;
 		while(rs.next()) {
-			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			rList.add(a);}		
 		GsonBuilder gboi=new GsonBuilder();
 		Gson gson=gboi.create();			 
@@ -157,8 +157,7 @@ public class RequestsDaoImpl {
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
-			
+			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			}
 		System.out.println(a);
 		return a;//re
@@ -174,7 +173,7 @@ public class RequestsDaoImpl {
 		//filling the arraylist with data from our query
 		ResultSet rs=pstmt.executeQuery();
 		while (rs.next()){
-			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
 			rList.add(a);
 			}
 		//returning the arraylist
@@ -183,10 +182,10 @@ public class RequestsDaoImpl {
 
 	public void createRequest(String location, String description, double cost,
 		String gradingFormat, String eventType, int userId, String justification,
-		String eventTime, String eventDate) throws SQLException {
+		String eventTime, String eventDate, String firstName, String lastName) throws SQLException {
 		Connection conn=cf.getConnection();
-		PreparedStatement pstmt=conn.prepareStatement("insert into requests(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE) "
-				+ "values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+")");
+		PreparedStatement pstmt=conn.prepareStatement("insert into requests(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE,FIRSTNAME,LASTNAME) "
+				+ "values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+",?,?)");
 		pstmt.setString(1,location);
 		pstmt.setString(2,description);
 		pstmt.setDouble(3, cost);
@@ -194,9 +193,8 @@ public class RequestsDaoImpl {
 		pstmt.setString(5,eventType);
 		pstmt.setInt(6,userId);
 		pstmt.setString(7,justification);
-		//pstmt.setTime(8, eventTime); Date and Time are coming from a form with restricted values (not open to injection)
-		//pstmt.setDate(9,eventDate);
-		System.out.println(pstmt.toString());
+		pstmt.setString(8, firstName);
+		pstmt.setString(9, lastName);
 		pstmt.execute();
 	}
 

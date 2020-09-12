@@ -21,7 +21,9 @@ public class EmployeeController {
 		} else {
 			int userid = (int) sesh.getAttribute("userid");
 			
-			//Get all form inputs		
+			//Get all form inputs	
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
 			String date = request.getParameter("eventDate");
 			String time = request.getParameter("eventTime");
 			String location = request.getParameter("location");
@@ -37,7 +39,7 @@ public class EmployeeController {
 			
 			RequestsDaoImpl rdi = new RequestsDaoImpl();
 			try {
-				rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,userid,justification,time,date);
+				rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,userid,justification,time,date,firstName,lastName);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

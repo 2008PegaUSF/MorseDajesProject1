@@ -7,6 +7,12 @@ INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTY
 
 insert into pending values (8);
 
+alter table requests
+add firstname varchar;
+
+alter table requests
+add lastname varchar;
+
 --Create Tables
 create table users (
 	userid serial primary key,

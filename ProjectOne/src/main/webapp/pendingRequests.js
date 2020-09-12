@@ -46,12 +46,12 @@ function appendTable(body){
 
         //Insert First Name
         var firstCell = row.insertCell(2);
-        var firstname = document.createTextNode("Dave");
+        var firstname = document.createTextNode(record["firstName"]);
         firstCell.appendChild(firstname);
 
         //Insert Last Name
         var lastCell = row.insertCell(3);
-        var lastname = document.createTextNode("Draper");
+        var lastname = document.createTextNode(record["lastName"]);
         lastCell.appendChild(lastname);
 
         //Insert Event Type
@@ -61,7 +61,7 @@ function appendTable(body){
 
         //Insert Cost
         var costCell = row.insertCell(5);
-        var cost = document.createTextNode(record["cost"]);
+        var cost = document.createTextNode("$" + record["cost"]);
         costCell.appendChild(cost);
 
         //Insert Description
@@ -93,6 +93,9 @@ function appendTable(body){
         locationCell.appendChild(location);
 
         //Insert Grading Format
+        var gradingCell = row.insertCell(12);
+        var grading = document.createTextNode(record["gradingFormat"]);
+        gradingCell.appendChild(grading);
 
         //Insert Documents
         var documentCell = row.insertCell(13);

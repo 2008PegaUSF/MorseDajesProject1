@@ -33,7 +33,6 @@ public class SupervisorController {
 		}
 		PrintWriter pw = response.getWriter();
 		pw.write(json);
-		System.out.println(json);
 	}
 
 }
