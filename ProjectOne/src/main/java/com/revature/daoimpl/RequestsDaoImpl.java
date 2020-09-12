@@ -50,7 +50,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from pending);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from pending);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -82,7 +82,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from pending);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from pending);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -99,7 +99,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from supervisorapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from supervisorapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -116,7 +116,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from departheadapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from departheadapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -133,7 +133,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from bencoapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from bencoapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -150,7 +150,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from awarded);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from awarded);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -167,7 +167,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from denied);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from denied);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -184,7 +184,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from supervisorapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from supervisorapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -198,7 +198,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from departheadapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from departheadapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -213,7 +213,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from bencoapproved);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from bencoapproved);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -228,7 +228,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from denied);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from denied);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
@@ -242,7 +242,7 @@ public class RequestsDaoImpl {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from requests where requestid = (select requestid from awarded);");
+		ResultSet rs = stmt.executeQuery("select * from requests where requestid in (select requestid from awarded);");
 		Requests a=null;
 		while(rs.next()) {
 			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));

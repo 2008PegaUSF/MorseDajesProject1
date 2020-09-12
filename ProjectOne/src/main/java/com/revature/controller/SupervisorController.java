@@ -63,11 +63,37 @@ public class SupervisorController {
 	}
 
 	public static void loadRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesh = request.getSession(false);
+		int userid = ((Integer) sesh.getAttribute("userid")).intValue();
+		
+		Users user = null;
+		try {
+			user = udi.getUserByUserId(userid);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		String userType = user.getUsertype();
 		
 		String json = null;
 		
 		try {
-			json = rdi.getRequestsJSON();
+			//json = rdi.getRequestsJSON();
+			switch (userType) {
+			case "Direct Supervisor":
+				json = rdi.getPendingsJSON();
+				break;
+			case "Department Head":
+				json = rdi.getSupervisorApprovedJSON();
+				break;
+			case "Benefits Coordinator":
+				json = rdi.getDepartmentHeadApprovedJSON();
+				break;
+			default:
+				json = rdi.getRequestsJSON();
+				break;
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
