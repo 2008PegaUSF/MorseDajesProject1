@@ -32,6 +32,14 @@ public class NavigateController {
 			rd = request.getRequestDispatcher("/viewGrades.html");
 			rd.forward(request, response);
 			break;
+		case "5":
+			rd = request.getRequestDispatcher("/pendingGrades.html");
+			rd.forward(request, response);
+			break;
+		case "6":
+			rd = request.getRequestDispatcher("/pendingRequests.html");
+			rd.forward(request, response);
+			break;
 		}
 
 	}
