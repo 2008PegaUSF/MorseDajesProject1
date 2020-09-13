@@ -16,7 +16,7 @@ function loadRequests(){
         }
     }
     //STEP 3
-    xhr.open("GET","http://localhost:8080/ProjectOne/api/loadRequests",true);
+    xhr.open("GET","http://localhost:8080/ProjectOne/api/loadRequestsSupervisor",true);
     //STEP 4
     xhr.send();
     return;

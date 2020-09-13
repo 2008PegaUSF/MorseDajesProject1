@@ -35,8 +35,11 @@ public class RequestHelper {
 		case "/ProjectOne/api/recordGradeVerdict":
 			SupervisorController.recordGradeVerdict(request, response);
 			break;
-		case "/ProjectOne/api/loadRequests":
+		case "/ProjectOne/api/loadRequestsSupervisor":
 			SupervisorController.loadRequests(request, response);
+			break;
+		case "/ProjectOne/api/loadRequestsEmployee":
+			EmployeeController.loadRequests(request, response);
 			break;
 		default:
 			HomeController.getLoginPage(request,response);

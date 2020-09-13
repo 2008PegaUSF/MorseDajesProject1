@@ -206,4 +206,13 @@ public class Requests {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventTime, String eventDate) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventTime = eventTime;
+		this.eventDate = eventDate;
+	}
 }

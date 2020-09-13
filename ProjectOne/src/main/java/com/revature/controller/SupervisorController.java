@@ -168,8 +168,8 @@ public class SupervisorController {
 		Users user = null;
 		try {
 			user = udi.getUserByUserId(userid);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		
 		String userType = user.getUsertype();

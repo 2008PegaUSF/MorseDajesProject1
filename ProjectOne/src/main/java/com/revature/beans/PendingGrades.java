@@ -1,10 +1,12 @@
 package com.revature.beans;
 
+import java.sql.Array;
 import java.util.Arrays;
 
 public class PendingGrades {
 protected int requestid;
 protected String gradeformat;
+protected byte[] files;
 
 
 

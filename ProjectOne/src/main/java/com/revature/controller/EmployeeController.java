@@ -2,30 +2,35 @@ package com.revature.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.Part;
-import org.apache.commons.io.IOUtils;
-import javax.servlet.annotation.MultipartConfig;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.IOUtils;
 
 import com.revature.beans.Requests;
+import com.revature.beans.Users;
 import com.revature.daoimpl.RequestsDaoImpl;
+import com.revature.daoimpl.UsersDaoImpl;
 import com.revature.util.ConnFactory;
 
 @MultipartConfig
 public class EmployeeController {
 
+	public static RequestsDaoImpl rdi = new RequestsDaoImpl();
+	public static UsersDaoImpl udi = new UsersDaoImpl();
+	
 	public static synchronized void getRequestForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession sesh = request.getSession(false);
@@ -117,5 +122,19 @@ public class EmployeeController {
 		}
 		
 	}
-
+	
+	public static void loadRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesh = request.getSession(false);
+		int userid = ((Integer) sesh.getAttribute("userid")).intValue();
+		
+		String json = null;
+		
+		try {
+			json = rdi.getRequestsByIdJSON(userid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		PrintWriter pw = response.getWriter();
+		pw.write(json);
+	}
 }

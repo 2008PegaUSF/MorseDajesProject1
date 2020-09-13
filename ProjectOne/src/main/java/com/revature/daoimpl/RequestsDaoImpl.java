@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.revature.beans.PendingGrades;
 import com.revature.beans.Requests;
+import com.revature.beans.gradespresentations;
+import com.revature.beans.requestfiles;
 import com.revature.util.ConnFactory;
 
 public class RequestsDaoImpl {
@@ -78,6 +80,45 @@ public class RequestsDaoImpl {
 	//	System.out.println(JSONObject);
 		return JSONObject;
 		
+	}
+	
+	public String getRequestsJSON2(int id) throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("SELECT REQUESTID,DESCRIPTION,GRADINGFORMAT,EVENTDATE,EVENTTYPE FROM REQUESTS WHERE USERID = ?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			rList.add(a);
+		}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;
+		
+	}
+	
+	public String getRequestsByIdJSON(int id) throws SQLException {
+		List<Requests> rList= new ArrayList<Requests>();
+		Connection conn = cf.getConnection();
+		//our prepared statement 
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTS WHERE USERID=?");
+		pstmt.setInt(1, id);
+		Requests a= null;
+		//filling the arraylist with data from our query
+		ResultSet rs=pstmt.executeQuery();
+		while (rs.next()){
+			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+			rList.add(a);
+		}
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
 	}
 	
 	public String getPendingsJSON() throws SQLException {		
@@ -439,5 +480,124 @@ public class RequestsDaoImpl {
 		pstmt.setInt(1, id);
 		pstmt.execute();
 			
+	}
+	
+
+	public String getGradesJSON() throws SQLException {
+		List<PendingGrades> rList=new ArrayList<PendingGrades>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
+		PendingGrades a=null;
+		while(rs.next()) {
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			rList.add(a);}
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+	}
+	
+	public List<requestfiles> getRequestFiles() throws SQLException {
+		List<requestfiles> rList=new ArrayList<requestfiles>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM requestfiles");
+		requestfiles a=null;
+		while(rs.next()) {
+			a=new requestfiles(rs.getInt(1),rs.getString(2),rs.getBytes(3),rs.getString(4));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+	
+	public String getRequestFilesJSON(int id) throws SQLException {
+		List<requestfiles> rList=new ArrayList<requestfiles>();
+		Connection conn=cf.getConnection();		
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTFILES WHERE USERID=?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		requestfiles a=null;
+		while(rs.next()) {
+			a=new requestfiles(rs.getInt(1),rs.getString(2),rs.getBytes(3),rs.getString(4));
+			rList.add(a);}
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;
+	}
+	
+	
+	
+	public void createRequestFiles(int id, String dname, byte[] file, String ext) throws SQLException{
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO REQUESTFILES(REQUESTID,DOCNAME,FILE,EXTENSION) values (?,?,?,?)");
+		pstmt.setInt(1, id);
+		pstmt.setString(2, dname);
+		pstmt.setBytes(3, file);
+		pstmt.setString(4,ext);
+		pstmt.execute();
+	}
+	
+	public void deleteRequestFiles(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM REQUESTFILES WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();		
+	}
+	
+	public List<gradespresentations> getGradesPresentations() throws SQLException {
+		List<gradespresentations> rList=new ArrayList<gradespresentations>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM gradespresentations");
+		gradespresentations a=null;
+		while(rs.next()) {
+			a=new gradespresentations(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4),rs.getString(5));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+	
+	
+	public String getGradesPresentationsJSON(int id) throws SQLException {
+		List<gradespresentations> rList=new ArrayList<gradespresentations>();
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM GRADESPRESENTATIONS WHERE REQUESTID = ?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		gradespresentations a=null;
+		while(rs.next()) {
+			a=new gradespresentations(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4),rs.getString(5));
+			rList.add(a);
 		}
+		//System.out.println(rList);
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+		//System.out.println(JSONObject);
+		return JSONObject;
+	}
+	
+	
+	
+	public void createGradesPresentations(int id, String format, String dname, byte[] file, String ext) throws SQLException{
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO GRADESPRESENTATIONS(REQUESTID,FORMAT,DOCNAME,FILE,EXTENSION) values (?,?,?,?,?)");
+		pstmt.setInt(1, id);
+		pstmt.setString(2, format);
+		pstmt.setString(3, dname);
+		pstmt.setBytes(4,file);
+		pstmt.setString(5,ext);
+		pstmt.execute();
+	}
+	
+	public void deleteGradesPresentations(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM GRADESPRESENTATIONS WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
 }
