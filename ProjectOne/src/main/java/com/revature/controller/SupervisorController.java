@@ -19,47 +19,144 @@ public class SupervisorController {
 	public static UsersDaoImpl udi = new UsersDaoImpl();
 	
 	public static void recordRequestVerdict(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String verdict = request.getParameter("verdict");
+		
+		switch (verdict) {
+		case "Approve":
+			approve(request, response);
+			break;
+		case "Deny":
+			deny(request, response);
+			break;
+		default:
+			System.out.println("INVALID OPTION");
+			request.getRequestDispatcher("/pendingRequests.html").forward(request, response);
+			break;
+		}
 	}
 	
 	public static void recordGradeVerdict(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 	
 	public static void deny(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get User
 		HttpSession sesh = request.getSession(false);
-		Users user = udi.getUser((int) sesh.getAttribute("userid"));
 		
+		int userid = ((Integer) sesh.getAttribute("userid")).intValue();
+		
+		Users user = null;
+		try {
+			user = udi.getUserByUserId(userid);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		String userType = user.getUsertype();
 		
-		switch (userType) {
-		//Function According to type of user
+		//Get Submission
+		String[] selections = request.getParameterValues("selection");
+		int[] requestids = new int[selections.length];
+		
+		for (int i = 0; i < selections.length; i++) {
+			requestids[i] = Integer.parseInt(selections[i]);
 		}
 		
+		switch (userType) {
+		case "Direct Supervisor":
+			for (int requestid : requestids) {
+				try {
+					rdi.createDenied(requestid);
+					rdi.deletePending(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case "Department Head":
+			for (int requestid : requestids) {
+				try {
+					rdi.createDenied(requestid);
+					rdi.deleteSupervisorApproved(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case "Benefits Coordinator":
+			for (int requestid : requestids) {
+				try {
+					rdi.createDenied(requestid);
+					rdi.deleteDepartmentHeadApproved(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		
+		request.getRequestDispatcher("/pendingRequests.html").forward(request, response);
 	}
 	
 	public static void approve(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Get User
 		HttpSession sesh = request.getSession(false);
-		Users user = udi.getUser((int) sesh.getAttribute("userid"));
 		
+		int userid = ((Integer) sesh.getAttribute("userid")).intValue();
+		
+		Users user = null;
+		try {
+			user = udi.getUserByUserId(userid);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		String userType = user.getUsertype();
 		
-		switch (userType) {
-		//Function According to type of user
+		//Get Submission
+		String[] selections = request.getParameterValues("selection");
+		int[] requestids = new int[selections.length];
+		
+		for (int i = 0; i < selections.length; i++) {
+			requestids[i] = Integer.parseInt(selections[i]);
 		}
 		
-	}
-	
-	public static void award(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sesh = request.getSession(false);
-		Users user = udi.getUser((int) sesh.getAttribute("userid"));
-		
-		String userType = user.getUsertype();
-		
 		switch (userType) {
-		//Function According to type of user
+		case "Direct Supervisor":
+			for (int requestid : requestids) {
+				try {
+					rdi.createSupervisorApproved(requestid);
+					rdi.deletePending(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case "Department Head":
+			for (int requestid : requestids) {
+				try {
+					rdi.createDepartmentHeadApproved(requestid);
+					rdi.deleteSupervisorApproved(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case "Benefits Coordinator":
+			for (int requestid : requestids) {
+				try {
+					rdi.createBencoApproved(requestid);
+					rdi.deleteDepartmentHeadApproved(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		default:
+			break;
 		}
 		
+		request.getRequestDispatcher("/pendingRequests.html").forward(request, response);
 	}
 
 	public static void loadRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

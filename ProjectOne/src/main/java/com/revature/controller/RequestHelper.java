@@ -29,10 +29,10 @@ public class RequestHelper {
 		case "/ProjectOne/api/uploadGrade":
 			EmployeeController.getGrade(request, response);
 			break;
-		case "/ProjectOne/api/pendingRequests":
+		case "/ProjectOne/api/recordRequestVerdict":
 			SupervisorController.recordRequestVerdict(request, response);
 			break;
-		case "/ProjectOne/api/pendingGrades":
+		case "/ProjectOne/api/recordGradeVerdict":
 			SupervisorController.recordGradeVerdict(request, response);
 			break;
 		case "/ProjectOne/api/loadRequests":

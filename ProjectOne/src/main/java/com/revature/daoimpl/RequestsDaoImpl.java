@@ -17,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.revature.beans.PendingGrades;
 import com.revature.beans.Requests;
 import com.revature.util.ConnFactory;
 
@@ -325,7 +326,14 @@ public class RequestsDaoImpl {
 
 	public void createSupervisorApproved(int id) throws SQLException {
 		Connection conn=cf.getConnection();
-		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO AWARDED(REQUESTID) values (?)");
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO SUPERVISORAPPROVED(REQUESTID) values (?)");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
+	public void createDepartmentHeadApproved(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO DEPARTHEADAPPROVED(REQUESTID) values (?)");
 		pstmt.setInt(1, id);
 		pstmt.execute();
 	}
@@ -340,6 +348,27 @@ public class RequestsDaoImpl {
 	public void deletePending(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
+	public void deleteSupervisorApproved(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM SUPERVISORAPPROVED WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
+	public void deleteDepartmentHeadApproved(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM DEPARTHEADAPPROVED WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
+	public void deleteBencoApproved(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM BENCOAPPROVED WHERE REQUESTID=?");
 		pstmt.setInt(1, id);
 		pstmt.execute();
 	}
@@ -363,4 +392,52 @@ public class RequestsDaoImpl {
 	    	}
 	    }
 	}
+	
+	public List<PendingGrades> getGrades() throws SQLException {
+		List<PendingGrades> rList=new ArrayList<PendingGrades>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
+		PendingGrades a=null;
+		while(rs.next()) {
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+
+	public PendingGrades getGradeById(int id) throws SQLException {
+		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM PENDINGGRADES WHERE REQUESTID= ?");
+		pstmt.setInt(1, id);
+		PendingGrades a=null;
+		//filling the user object with the data from our query
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			a = new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			
+			}
+		System.out.println(a);
+		return a;//re
+	}
+
+	public void createGrade(String s, String t) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO PENDINGGRADES(GRADINGFORMAT,FILENAME) values (?,?)");
+		pstmt.setString(1, s);
+		pstmt.setString(2, t);
+		pstmt.execute();
+	}
+		
+		// TODO Auto-generated method stub
+		
+	
+
+	public void deletePendingGrade(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDINGGRADES WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+			
+		}
 }
