@@ -115,45 +115,47 @@ public class SupervisorController {
 		
 		//Get Submission
 		String[] selections = request.getParameterValues("selection");
-		int[] requestids = new int[selections.length];
-		
-		for (int i = 0; i < selections.length; i++) {
-			requestids[i] = Integer.parseInt(selections[i]);
-		}
-		
-		switch (userType) {
-		case "Direct Supervisor":
-			for (int requestid : requestids) {
-				try {
-					rdi.createSupervisorApproved(requestid);
-					rdi.deletePending(requestid);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+		if (selections != null) {		
+			int[] requestids = new int[selections.length];
+			
+			for (int i = 0; i < selections.length; i++) {
+				requestids[i] = Integer.parseInt(selections[i]);
 			}
-			break;
-		case "Department Head":
-			for (int requestid : requestids) {
-				try {
-					rdi.createDepartmentHeadApproved(requestid);
-					rdi.deleteSupervisorApproved(requestid);
-				} catch (SQLException e) {
-					e.printStackTrace();
+			
+			switch (userType) {
+			case "Direct Supervisor":
+				for (int requestid : requestids) {
+					try {
+						rdi.createSupervisorApproved(requestid);
+						rdi.deletePending(requestid);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			break;
-		case "Benefits Coordinator":
-			for (int requestid : requestids) {
-				try {
-					rdi.createBencoApproved(requestid);
-					rdi.deleteDepartmentHeadApproved(requestid);
-				} catch (SQLException e) {
-					e.printStackTrace();
+				break;
+			case "Department Head":
+				for (int requestid : requestids) {
+					try {
+						rdi.createDepartmentHeadApproved(requestid);
+						rdi.deleteSupervisorApproved(requestid);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
+				break;
+			case "Benefits Coordinator":
+				for (int requestid : requestids) {
+					try {
+						rdi.createBencoApproved(requestid);
+						rdi.deleteDepartmentHeadApproved(requestid);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		default:
-			break;
 		}
 		
 		request.getRequestDispatcher("/pendingRequests.html").forward(request, response);
