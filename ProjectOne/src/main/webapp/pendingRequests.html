@@ -29,18 +29,20 @@
 
         <div id="dashboard" class="grid-container">
             <div>
+                <form method = "post" action="navigate">
                 <table id="tabs">
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Reimbursement Requests</button>
+                            <button class="supDashboardTab" name="button" value="6">Pending Reimbursement Requests</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Grades/ Presentations</button>
+                            <button class="supDashboardTab" name="button" value="5">Pending Grades/ Presentations</button>
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div id="contentHolder">
                 <h2 class="heading">Pending Reimbursement Requests</h2>
@@ -49,6 +51,7 @@
                     <div class="form-row">
                         <div class="form-group col attachments">
                             <table class="supTable">
+                            <tr>
                                 <th></th>
                                 <th>Request ID</th>
                                 <th>First Name</th>
@@ -63,6 +66,7 @@
                                 <th>Event Location</th>
                                 <th>Grading Format</th>
                                 <th>Supporting Documents</th>
+                             </tr>
                             </table>
                         </div>
                     </div>

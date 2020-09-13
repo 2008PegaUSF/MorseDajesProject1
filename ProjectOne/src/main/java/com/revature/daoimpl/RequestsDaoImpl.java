@@ -1,5 +1,8 @@
 package com.revature.daoimpl;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,15 +11,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.IOUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.revature.beans.Awarded;
-import com.revature.beans.BencoApproved;
-import com.revature.beans.Denied;
-import com.revature.beans.DepartheadApproved;
-import com.revature.beans.Pending;
 import com.revature.beans.Requests;
-import com.revature.beans.SupervisorApproved;
 import com.revature.util.ConnFactory;
 
 public class RequestsDaoImpl {
@@ -341,5 +342,25 @@ public class RequestsDaoImpl {
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
 		pstmt.setInt(1, id);
 		pstmt.execute();
+	}
+	
+	public void insertFiles(List<Part> fileParts, int requestid) throws SQLException, IOException {
+		Connection conn = cf.getConnection();
+		for (Part filePart : fileParts) {
+	    	if (filePart.getSize() > 0) {
+		        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		        
+		        //Create InputStream and convert to byte[]
+		        InputStream fileStream = filePart.getInputStream();
+		        byte[] bytes = IOUtils.toByteArray(fileStream);
+		        
+		    	PreparedStatement ps = conn.prepareStatement("INSERT INTO requestfiles VALUES (?, ?, ?)");
+				ps.setInt(1, requestid);
+				ps.setString(2, fileName);
+				ps.setBytes(3, bytes);
+				ps.executeUpdate();
+				ps.close();
+	    	}
+	    }
 	}
 }
