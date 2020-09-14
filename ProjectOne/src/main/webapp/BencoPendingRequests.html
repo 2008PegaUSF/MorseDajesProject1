@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
     <link href="https://fonts.googleapis.com/css2?family=Gayathri&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="trp.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/ProjectOne/trp.css">
   </head>
   <body>
     <div id="navbar">
@@ -20,33 +20,38 @@
                 <h5 id="greeting"></h5>
             </li>
             <li class="nav">
-                <button id="logout">Log out</button>
+                <form action="logout" method="post">
+            		<button type="submit" id="logout">Log out</button>
+            	</form>
             </li>
         </ul>
     </div>
 
         <div id="dashboard" class="grid-container">
             <div>
+                <form method = "post" action="navigate">
                 <table id="tabs">
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Reimbursement Requests</button>
+                            <button class="supDashboardTab" name="button" value="6">Pending Reimbursement Requests</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="supDashboardTab">Pending Grades/ Presentations</button>
+                            <button class="supDashboardTab" name="button" value="5">Pending Grades/ Presentations</button>
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div id="contentHolder">
                 <h2 class="heading">Pending Reimbursement Requests</h2>
                 <h5 class="subheading">Please select reimbursement requests to approve or deny.</h5>
-                <form>
+                <form id="RequestTable" method="post" action="recordRequestVerdict">
                     <div class="form-row">
                         <div class="form-group col attachments">
                             <table class="supTable">
+                            <tr>
                                 <th></th>
                                 <th>Request ID</th>
                                 <th>First Name</th>
@@ -60,33 +65,33 @@
                                 <th>Event Time</th>
                                 <th>Event Location</th>
                                 <th>Grading Format</th>
+                                <th>Reimbursement Amount</th>
+                                <th>Maximum Award</th>
                                 <th>Supporting Documents</th>
-                                <tr>
-                                    <td><input type="checkbox" name="selections" value="0"></td>
-                                    <td>0</td>
-                                    <td>Tom</td>
-                                    <td>Foolery</td>
-                                    <td>Seminar</td>
-                                    <td>$100.00</td>
-                                    <td>"Taking Work Seriously: the simple hack that will change your life"</td>
-                                    <td>Need a promotion; maybe this will help???</td>
-                                    <td>3</td>
-                                    <td>4/20/21</td>
-                                    <td>High Noon</td>
-                                    <td>1234 Fakesworth Ave, Fauxville FL 33479</td>
-                                    <td>Presentation</td>
-                                    <td></td>
-                                </tr>
+                             </tr>
                             </table>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
                             <h5 class="taleft">Would you like to APPROVE or DENY the selected request(s)?</h5>
-                            <select class="form-control contain" name="verdict">
+                            <select class="form-control contain" name="verdict" required>
                                 <option>Approve</option>
                                 <option>Deny</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h5 class="taleft">Would you like to change the reimbursement amount of the selected request(s)?</h5>
+                            <p class="rform taleft">YES, change reimbursement amount to: $</p>
+                            <input type="number" name="newAmount" class="form-control-file contain">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <p class="rform taleft">If the reimbursement amount has been changed and <strong>exceeds the maximum award</strong>, please provide a reason:</p>
+                            <textarea class="form-control contain" name="reason" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -98,6 +103,7 @@
             </div>
         </div>
     <!-- Optional JavaScript -->
+    <script type="text/JavaScript" src="http://localhost:8080/ProjectOne/pendingRequests.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

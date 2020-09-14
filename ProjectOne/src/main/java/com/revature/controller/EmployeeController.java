@@ -63,6 +63,18 @@ public class EmployeeController {
 				// Retrieves files from <input type="file" name="file" multiple> 
 				 List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
 				 
+				 for (Part filePart : fileParts) {
+				    	if (filePart.getSize() > 0) {
+				    		//Get file name and extension
+					        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+					        String extension = fileName.substring(fileName.lastIndexOf('.')+1, fileName.length());
+					        
+//					        if (!extension.equals("pdf") && !extension.equals("png") && !extension.equals("jpeg") && !extension.equals("txt") && !extension.equals("doc") {
+//					        	request.getRequestDispatcher("/submitRequest.html").forward(request, response);
+//					        }
+				    	}
+				 }
+				 
 				 //Add files to table, and request to pending
 				 rdi.createPending(requestid);
 				 rdi.insertFiles(fileParts, requestid);
