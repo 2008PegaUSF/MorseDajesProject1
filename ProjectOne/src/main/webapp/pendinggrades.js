@@ -45,21 +45,37 @@ function appendTable(body){
         var id = document.createTextNode(record["requestid"]);
         idCell.appendChild(id);
 
-    	//Insert Event Date
-        var dateCell = row.insertCell(2);
-        var date = document.createTextNode(record["eventDate"]);
-        dateCell.appendChild(date);
+    	//Insert First Name
+        var firstNameCell = row.insertCell(2);
+        var firstName = document.createTextNode(record["firstName"]);
+        firstNameCell.appendChild(firstName);
 
    
-        //Insert Event Type
-        var eventCell = row.insertCell(3);
-        var eventtype = document.createTextNode(record["eventType"]);
-        eventCell.appendChild(eventtype);   
+        //Insert LastName
+        var lastNameCell = row.insertCell(3);
+        var lastName = document.createTextNode(record["lastName"]);
+        lastNameCell.appendChild(lastName);   
       
 
-        //Insert Documents
-        var gradeCell= row.insertCell(4);
-        var gradetype= document.createTextNode(record["gradingformat"]);
-        gradeCell.appendChild(gradetype);
+        //Insert Event Type
+        var eventCell= row.insertCell(4);
+        var event = document.createTextNode(record["eventType"]);
+        eventCell.appendChild(event);
+        
+        //Insert Description
+        var descCell= row.insertCell(5);
+        var description = document.createTextNode(record["description"]);
+        descCell.appendChild(description);
+        
+        //Insert Grading Format
+        var gradeFormatCell= row.insertCell(6);
+        var gradeFormat = document.createTextNode(record["gradingFormat"]);
+        gradeFormatCell.appendChild(gradeFormat);
+        
+        //Insert Grade
+        var gradeCell= row.insertCell(7);
+        //var event = document.createTextNode(record["eventType"]);
+        //eventCell.appendChild(event);
+        
     }
 }

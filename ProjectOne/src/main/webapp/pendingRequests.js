@@ -1,3 +1,4 @@
+
 //Load the page
 window.onload=function(){
     loadRequests();
@@ -16,7 +17,7 @@ function loadRequests(){
         }
     }
     //STEP 3
-    xhr.open("GET","http://localhost:8080/ProjectOne/api/loadRequestsSupervisor",true);
+    xhr.open("GET","http://localhost:8080/ProjectOne/api/loadRequests",true);
     //STEP 4
     xhr.send();
     return;
@@ -24,7 +25,7 @@ function loadRequests(){
 
 function appendTable(body){
     var table = document.getElementById("RequestTable").getElementsByTagName('tbody')[0];
-    var items = JSON.parse(body);
+	var items = JSON.parse(body);
 
     for (var i = 0; i < items.length; i++){
         var record = items[i];

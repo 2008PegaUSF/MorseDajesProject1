@@ -119,8 +119,35 @@ public class EmployeeController {
 			}
 			
 			request.getRequestDispatcher("/uploadGrade.html").forward(request, response);
+		}	
+	}
+	
+	public static void getGradeFiles(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+		HttpSession sesh = request.getSession(false);
+		if (sesh == null) {
+			request.getRequestDispatcher("api/*").forward(request, response);
+			System.out.println("Not Logged In");
+		} else {
+			//Get request Id from the URI
+			String URI = request.getRequestURI();
+			String requestIdString = URI.substring(URI.lastIndexOf('/')+1, URI.length());
+			
+			//Change to int for following method
+			int requestid = Integer.parseInt(requestIdString);
+			
+			RequestsDaoImpl rdi = new RequestsDaoImpl();
+			
+			String JSONfiles;
+			try {
+				JSONfiles = rdi.getGradesPresentationsJSON(requestid);
+				PrintWriter pw = response.getWriter();
+		        pw.write(JSONfiles);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 		}
-		
 	}
 	
 	public static void loadRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

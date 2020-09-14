@@ -438,10 +438,10 @@ public class RequestsDaoImpl {
 		List<PendingGrades> rList=new ArrayList<PendingGrades>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM GRADESPRESENTATIONS");
 		PendingGrades a=null;
 		while(rs.next()) {
-			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getBytes(4), rs.getString(5));
 			rList.add(a);}
 		System.out.println(rList);
 		return rList;
@@ -449,13 +449,13 @@ public class RequestsDaoImpl {
 
 	public PendingGrades getGradeById(int id) throws SQLException {
 		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
-		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM PENDINGGRADES WHERE REQUESTID= ?");
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM GRADESPRESENTATIONS WHERE REQUESTID= ?");
 		pstmt.setInt(1, id);
 		PendingGrades a=null;
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			a = new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			a = new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4), rs.getString(5));
 			
 			}
 		System.out.println(a);
@@ -464,19 +464,15 @@ public class RequestsDaoImpl {
 
 	public void createGrade(String s, String t) throws SQLException {
 		Connection conn=cf.getConnection();
-		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO PENDINGGRADES(GRADINGFORMAT,FILENAME) values (?,?)");
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO GRADESPRESENTATIONS(GRADINGFORMAT,FILENAME) values (?,?)");
 		pstmt.setString(1, s);
 		pstmt.setString(2, t);
 		pstmt.execute();
 	}
-		
-		// TODO Auto-generated method stub
-		
-	
 
 	public void deletePendingGrade(int id) throws SQLException {
 		Connection conn=cf.getConnection();
-		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDINGGRADES WHERE REQUESTID=?");
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM GRADESPRESENTATIONS WHERE REQUESTID=?");
 		pstmt.setInt(1, id);
 		pstmt.execute();
 			
@@ -487,10 +483,10 @@ public class RequestsDaoImpl {
 		List<PendingGrades> rList=new ArrayList<PendingGrades>();
 		Connection conn=cf.getConnection();
 		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
+		ResultSet rs = stmt.executeQuery("SELECT * FROM GRADESPRESENTATIONS");
 		PendingGrades a=null;
 		while(rs.next()) {
-			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4));
 			rList.add(a);}
 		GsonBuilder gboi=new GsonBuilder();
 		Gson gson=gboi.create();			 

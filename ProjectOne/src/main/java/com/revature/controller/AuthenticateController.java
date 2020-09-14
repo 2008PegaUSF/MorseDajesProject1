@@ -39,7 +39,7 @@ public class AuthenticateController {
 		} else if (l.getPassword().equals(password)) { //Valid Login
 			
 			if (u.getUsertype().equals("Employee")) {//Go to submission page if you're an employee
-				RequestDispatcher rd = request.getRequestDispatcher("/submitRequest.html");
+				RequestDispatcher rd = request.getRequestDispatcher("/101.html");
 				
 				HttpSession sesh = request.getSession();//Create a session w/ the user id
 				sesh.setAttribute("userid", new Integer(l.getUserId()));
