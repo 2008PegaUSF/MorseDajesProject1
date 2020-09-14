@@ -208,4 +208,38 @@ public class EmployeeController {
 		pw.write(json);
 		
 	}
+	
+	public static void cancelRequests(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HttpSession sesh = request.getSession(false);
+		if (sesh == null) {
+			request.getRequestDispatcher("api/*").forward(request, response);
+			System.out.println("Not Logged In");
+		} else {
+			
+			//Get the value of the request ID from the radio button selected
+			String[] requestIdVal = request.getParameterValues("selection");
+			//Convert to int
+			//int requestID = Integer.parseInt(requestIdVal[0]);
+			
+			//Get grading format
+			//String format = request.getParameter("gradingFormat");
+			
+			String[] selections = request.getParameterValues("selection");
+			int[] requestids = new int[selections.length];
+			
+			for (int i = 0; i < selections.length; i++) {
+				requestids[i] = Integer.parseInt(selections[i]);
+			}
+		    
+			for (int requestid : requestids) {
+				try {
+					rdi.deleteRequest(requestid);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		    
+			request.getRequestDispatcher("/viewGrades.html").forward(request, response);
+		}
+	}
 }

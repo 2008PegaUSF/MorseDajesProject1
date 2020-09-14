@@ -47,6 +47,9 @@ public class RequestHelper {
 		case "/ProjectOne/api/uploadGrade.html/*":
 			EmployeeController.getGradeFiles(request, response);
 			break;
+		case "/ProjectOne/api/cancelRequest":
+			EmployeeController.cancelRequests(request, response);
+			break;
 		default:
 			HomeController.getLoginPage(request,response);
 			break;

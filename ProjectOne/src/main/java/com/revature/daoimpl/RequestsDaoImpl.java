@@ -422,6 +422,13 @@ public class RequestsDaoImpl {
 		pstmt.execute();
 	}
 
+	public void deleteRequest(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM REQUESTS WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
 	public void deletePending(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
