@@ -13,6 +13,11 @@ public class Requests {
 	protected String  justification;
 	protected String  eventTime;
 	protected String eventDate;
+	protected String firstName;
+	protected String lastName;
+	protected double projectedamount;
+	protected double awardedamount;
+	
 	public int getRequestid() {
 		return requestid;
 	}
@@ -85,19 +90,7 @@ public class Requests {
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
 	}
-	@Override
-	public String toString() {
-		return "Requests [requestid=" + requestid + ", requestDate=" + requestDate + ", location=" + location
-				+ ", description=" + description + ", cost=" + cost + ", gradingFormat=" + gradingFormat
-				+ ", eventType=" + eventType + ", UserId=" + UserId + ", requestTime=" + requestTime
-				+ ", justification=" + justification + ", eventTime=" + eventTime + ", eventDate=" + eventDate
-				+ ", getRequestid()=" + getRequestid() + ", getRequestDate()=" + getRequestDate() + ", getLocation()="
-				+ getLocation() + ", getDescription()=" + getDescription() + ", getCost()=" + getCost()
-				+ ", getGradingFormat()=" + getGradingFormat() + ", getEventType()=" + getEventType() + ", getUserId()="
-				+ getUserId() + ", getRequestTime()=" + getRequestTime() + ", getJustification()=" + getJustification()
-				+ ", getEventTime()=" + getEventTime() + ", getEventDate()=" + getEventDate() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -180,9 +173,25 @@ public class Requests {
 			return false;
 		return true;
 	}
-	public Requests(int requestid,String requestDate, String location, String description, double cost,
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public Requests() {
+		super();
+	}
+	public Requests(int requestid, String requestDate, String location, String description, double cost,
 			String gradingFormat, String eventType, int userId, String requestTime, String justification,
-			String eventTime, String eventDate) {
+			String eventTime, String eventDate, String firstName, String lastName) {
 		super();
 		this.requestid = requestid;
 		this.requestDate = requestDate;
@@ -196,8 +205,28 @@ public class Requests {
 		this.justification = justification;
 		this.eventTime = eventTime;
 		this.eventDate = eventDate;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
-	public Requests() {
-		// TODO Auto-generated constructor stub
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventTime, String eventDate) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventTime = eventTime;
+		this.eventDate = eventDate;
+	}
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventType, String eventDate,
+		double projectedamount, double awardedamount) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.eventDate = eventDate;
+		this.projectedamount = projectedamount;
+		this.awardedamount = awardedamount;
 	}
 }

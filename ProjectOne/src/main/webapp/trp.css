@@ -35,7 +35,7 @@ body {
 
 #rightNavbar {
     float: right;
-    margin-top: 0;
+    margin-top: -4px;
     height: 33px;
 }
 
@@ -141,7 +141,7 @@ button:focus {
 
 .supDashboardTab {
     border: none;
-    height: 3in;
+    height: 3.03in;
     width: 2in;
     float: left;
     margin: 0px;
@@ -152,7 +152,7 @@ button:focus {
 }
 
 #dashboard {
-    height: 90%;
+    height: 6in;
     width: 80%;
     margin: 7% 10% 3%; 
     box-shadow: -1px 3px 30px 1px black;
@@ -200,6 +200,10 @@ button:focus {
 
 .attachments {
     text-align: left;
+}
+
+#tiny {
+	font-size: 13px;
 }
 
 .bottomrow {

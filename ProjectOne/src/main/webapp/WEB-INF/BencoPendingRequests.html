@@ -66,6 +66,7 @@
                                 <th>Event Location</th>
                                 <th>Grading Format</th>
                                 <th>Reimbursement Amount</th>
+                                <th>Maximum Award</th>
                                 <th>Supporting Documents</th>
                              </tr>
                             </table>
@@ -74,10 +75,23 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <h5 class="taleft">Would you like to APPROVE or DENY the selected request(s)?</h5>
-                            <select class="form-control contain" name="verdict">
+                            <select class="form-control contain" name="verdict" required>
                                 <option>Approve</option>
                                 <option>Deny</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h5 class="taleft">Would you like to change the reimbursement amount of the selected request(s)?</h5>
+                            <p class="rform taleft">YES, change reimbursement amount to: $</p>
+                            <input type="number" name="newAmount" class="form-control-file contain">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <p class="rform taleft">If the reimbursement amount has been changed and <strong>exceeds the maximum award</strong>, please provide a reason:</p>
+                            <textarea class="form-control contain" name="reason" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="form-row">

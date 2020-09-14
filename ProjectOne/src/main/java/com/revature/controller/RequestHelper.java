@@ -23,18 +23,32 @@ public class RequestHelper {
 		case "/ProjectOne/api/navigate":
 			NavigateController.getNavigation(request, response);
 			break;
-
 		case "/ProjectOne/api/submitRequest":
 			EmployeeController.getRequestForm(request, response);
 			break;
 		case "/ProjectOne/api/uploadGrade":
 			EmployeeController.getGrade(request, response);
 			break;
-		case "/ProjectOne/api/pendingRequests":
+		case "/ProjectOne/api/recordRequestVerdict":
 			SupervisorController.recordRequestVerdict(request, response);
 			break;
-		case "/ProjectOne/api/pendingGrades":
+		case "/ProjectOne/api/recordGradeVerdict":
 			SupervisorController.recordGradeVerdict(request, response);
+			break;
+		case "/ProjectOne/api/loadRequests":
+			SupervisorController.loadRequests(request, response);
+			break;
+		case "/ProjectOne/api/loadRequestsEmployee":
+			EmployeeController.loadRequests(request, response);
+			break;
+		case "/ProjectOne/api/loadRequestsEmployeeAmounts":
+			EmployeeController.loadRequestsAmounts(request, response);
+			break;
+		case "/ProjectOne/api/uploadGrade.html/*":
+			EmployeeController.getGradeFiles(request, response);
+			break;
+		case "/ProjectOne/api/cancelRequest":
+			EmployeeController.cancelRequests(request, response);
 			break;
 		default:
 			HomeController.getLoginPage(request,response);
