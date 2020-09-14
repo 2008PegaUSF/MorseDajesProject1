@@ -164,4 +164,21 @@ public class EmployeeController {
 		PrintWriter pw = response.getWriter();
 		pw.write(json);
 	}
+
+
+	public static void loadRequestsAmounts(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession sesh = request.getSession(false);
+		int userid = ((Integer) sesh.getAttribute("userid")).intValue();
+		
+		String json = null;
+		
+		try {
+			json = rdi.getRequestsJSON3(userid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		PrintWriter pw = response.getWriter();
+		pw.write(json);
+		
+	}
 }

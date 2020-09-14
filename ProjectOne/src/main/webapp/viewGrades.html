@@ -48,7 +48,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <button class="dashboardTab" name="button" value="4">View Grades/ Presentations</button>
+                            <button class="dashboardTab" name="button" value="4">View Requests</button>
                         </td>
                     </tr>
                 </table>
@@ -56,21 +56,32 @@
             </div>
 
             <div id="contentHolder">
-                <h2 class="heading">Submitted Grades/Presentations</h2>
-                <h5 class="subheading">View your previously submitted grades and presentations below.</h5>
+                <h2 class="heading">Past Requests</h2>
+                <h5 class="subheading">View your previously reimbursement requests below. You may also cancel a request.</h5>
+                <form action="cancelRequest" method="post">
                     <div class="form-row">
                         <div class="form-group col attachments">
-                            <table class="supTable" id="grades">
-                                <tr>
-                                    <th>Event Date</th>
-                                    <th>Event Type</th>
-                                    <th>Description</th>
-                                    <th>Grading Format</th>
-                                    <th>Grade/Presentation File</th>
+                            <table class="supTable" id="RequestTable">
+                            	<tr>
+	                                <th></th>
+	                            	<th>Request ID</th>
+	                                <th>Event Date</th>
+	                                <th>Event Type</th>
+	                                <th>Description</th>
+	                                <th>Grading Format</th>
+	                                <th>Projected Reimbursement Amount</th>
+	                                <th>Reimbursement Awarded</th>
                                 </tr>
                             </table>
                         </div>
-                    </div>              
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h5>Cancel the selected request(s)?</h5>
+                            <input type="submit" class="form-control" value="Yes, Cancel Request(s)">
+                        </div>
+                    </div>
+                </form>              
             </div>
         </div>
     <!-- Optional JavaScript -->

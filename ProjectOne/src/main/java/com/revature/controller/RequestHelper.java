@@ -41,6 +41,9 @@ public class RequestHelper {
 		case "/ProjectOne/api/loadRequestsEmployee":
 			EmployeeController.loadRequests(request, response);
 			break;
+		case "/ProjectOne/api/loadRequestsEmployeeAmounts":
+			EmployeeController.loadRequestsAmounts(request, response);
+			break;
 		case "/ProjectOne/api/uploadGrade.html/*":
 			EmployeeController.getGradeFiles(request, response);
 			break;

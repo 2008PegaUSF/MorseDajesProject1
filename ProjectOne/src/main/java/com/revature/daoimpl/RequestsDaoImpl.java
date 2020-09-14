@@ -101,6 +101,24 @@ public class RequestsDaoImpl {
 		
 	}
 	
+	public String getRequestsJSON3(int id) throws SQLException {
+		List<Requests> rList=new ArrayList<Requests>();
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("SELECT REQUESTID,EVENTDATE,EVENTTYPE,DESCRIPTION,GRADINGFORMAT,PROJECTEDAMOUNT,AWARDEDAMOUNT FROM REQUESTS WHERE USERID = ?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		Requests a=null;
+		while(rs.next()) {
+			a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDouble(7));
+			rList.add(a);}		
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;
+
+	}
+	
 	public String getRequestsByIdJSON(int id) throws SQLException {
 		List<Requests> rList= new ArrayList<Requests>();
 		Connection conn = cf.getConnection();

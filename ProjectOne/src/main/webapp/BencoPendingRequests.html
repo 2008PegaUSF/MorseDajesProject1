@@ -66,6 +66,7 @@
                                 <th>Event Location</th>
                                 <th>Grading Format</th>
                                 <th>Reimbursement Amount</th>
+                                <th>Maximum Award</th>
                                 <th>Supporting Documents</th>
                              </tr>
                             </table>
@@ -74,10 +75,23 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <h5 class="taleft">Would you like to APPROVE or DENY the selected request(s)?</h5>
-                            <select class="form-control contain" name="verdict">
+                            <select class="form-control contain" name="verdict" required>
                                 <option>Approve</option>
                                 <option>Deny</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <h5 class="taleft">Would you like to change the reimbursement amount of the selected request(s)?</h5>
+                            <p class="rform taleft">YES, change reimbursement amount to: $</p>
+                            <input type="number" name="newAmount" class="form-control-file contain">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <p class="rform taleft">If the reimbursement amount has been changed and <strong>exceeds the maximum award</strong>, please provide a reason:</p>
+                            <textarea class="form-control contain" name="reason" rows="3" required></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -89,7 +103,7 @@
             </div>
         </div>
     <!-- Optional JavaScript -->
-    <script type="text/JavaScript" src="http://localhost:8080/ProjectOne/pendingRequests.js"></script>
+    <script type="text/JavaScript" src="http://localhost:8080/ProjectOne/BencoPendingRequests.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

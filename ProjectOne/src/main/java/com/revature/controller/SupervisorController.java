@@ -146,8 +146,10 @@ public class SupervisorController {
 			case "Benefits Coordinator":
 				for (int requestid : requestids) {
 					try {
-						rdi.createBencoApproved(requestid);
+						rdi.createAwarded(requestid);
 						rdi.deleteDepartmentHeadApproved(requestid);
+						
+						//award();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}

@@ -15,6 +15,8 @@ public class Requests {
 	protected String eventDate;
 	protected String firstName;
 	protected String lastName;
+	protected double projectedamount;
+	protected double awardedamount;
 	
 	public int getRequestid() {
 		return requestid;
@@ -214,5 +216,17 @@ public class Requests {
 		this.gradingFormat = gradingFormat;
 		this.eventTime = eventTime;
 		this.eventDate = eventDate;
+	}
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventType, String eventDate,
+		double projectedamount, double awardedamount) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.eventDate = eventDate;
+		this.projectedamount = projectedamount;
+		this.awardedamount = awardedamount;
 	}
 }
