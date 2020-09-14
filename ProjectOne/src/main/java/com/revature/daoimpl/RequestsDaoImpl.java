@@ -361,6 +361,24 @@ public class RequestsDaoImpl {
 		pstmt.setString(9, lastName);
 		pstmt.execute();
 	}
+	
+	public void createRequest(String location, String description, double cost,
+		String gradingFormat, String eventType, int userId, String justification,
+		String eventTime, String eventDate,String fname,String lname, double pAmount) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE,FIRSTNAME, LASTNAME,PROJECTEDAMOUNT)values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+",?,?,?)");
+		pstmt.setString(1,location);
+		pstmt.setString(2,description);
+		pstmt.setDouble(3, cost);
+		pstmt.setString(4, gradingFormat);
+		pstmt.setString(5,eventType);
+		pstmt.setInt(6,userId);
+		pstmt.setString(7,justification);
+		pstmt.setString(8, fname);
+		pstmt.setString(9, lname);
+		pstmt.setDouble(10, pAmount);
+		pstmt.execute();
+	}
 
 	public void createAwarded(int id) throws SQLException {
 	Connection conn=cf.getConnection();
