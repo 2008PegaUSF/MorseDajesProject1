@@ -27,7 +27,6 @@ public class AuthenticateController {
 		Users u = null;
 		try {
 			l = udi.getLoginByName(username);
-			u = udi.getUserByUserId(l.getUserId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,6 +36,11 @@ public class AuthenticateController {
 			rd.forward(request, response);
 			
 		} else if (l.getPassword().equals(password)) { //Valid Login
+			try {
+				u = udi.getUserByUserId(l.getUserId());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 			if (u.getUsertype().equals("Employee")) {//Go to submission page if you're an employee
 				RequestDispatcher rd = request.getRequestDispatcher("/101.html");
