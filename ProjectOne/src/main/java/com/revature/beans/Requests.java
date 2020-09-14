@@ -90,6 +90,18 @@ public class Requests {
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
 	}
+	public double getProjectedamount() {
+		return projectedamount;
+	}
+	public void setProjectedamount(double projectedamount) {
+		this.projectedamount = projectedamount;
+	}
+	public double getAwardedamount() {
+		return awardedamount;
+	}
+	public void setAwardedamount(double awardedamount) {
+		this.awardedamount = awardedamount;
+	}
 	
 	@Override
 	public int hashCode() {

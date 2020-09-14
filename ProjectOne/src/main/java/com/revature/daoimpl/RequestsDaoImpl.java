@@ -315,15 +315,14 @@ public class RequestsDaoImpl {
 
 	public Requests getRequestByReqId(int id) throws SQLException {
 		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
-		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM USERS WHERE REQUESTID= ?");
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTS WHERE REQUESTID= ?");
 		pstmt.setInt(1, id);
 		Requests a=null;
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
-			}
-		//System.out.println(a);
+			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getDouble(16));
+		}
 		return a;//re
 	}
 

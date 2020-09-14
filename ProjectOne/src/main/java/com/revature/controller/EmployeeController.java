@@ -217,13 +217,6 @@ public class EmployeeController {
 		} else {
 			
 			//Get the value of the request ID from the radio button selected
-			String[] requestIdVal = request.getParameterValues("selection");
-			//Convert to int
-			//int requestID = Integer.parseInt(requestIdVal[0]);
-			
-			//Get grading format
-			//String format = request.getParameter("gradingFormat");
-			
 			String[] selections = request.getParameterValues("selection");
 			int[] requestids = new int[selections.length];
 			
