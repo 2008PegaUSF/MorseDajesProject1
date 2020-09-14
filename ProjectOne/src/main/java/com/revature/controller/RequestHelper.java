@@ -38,6 +38,10 @@ public class RequestHelper {
 		case "/ProjectOne/api/loadRequests":
 			SupervisorController.loadRequests(request, response);
 			break;
+			
+		case "/ProjectOne/api/uploadGrade.html/*":
+			EmployeeController.getGradeFiles(request, response);
+			break;
 		default:
 			HomeController.getLoginPage(request,response);
 			break;

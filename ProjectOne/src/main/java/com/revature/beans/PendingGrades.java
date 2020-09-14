@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class PendingGrades {
 protected int requestid;
 protected String gradeformat;
+protected String extension;
 
 
 
@@ -16,6 +17,7 @@ public int hashCode() {
 	result = prime * result + Arrays.hashCode(file);
 	result = prime * result + ((filename == null) ? 0 : filename.hashCode());
 	result = prime * result + ((gradeformat == null) ? 0 : gradeformat.hashCode());
+	result = prime * result + ((extension == null) ? 0 : extension.hashCode());
 	result = prime * result + requestid;
 	return result;
 }
@@ -43,6 +45,11 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!gradeformat.equals(other.gradeformat))
 		return false;
+	if (extension == null) {
+		if (other.extension != null)
+			return false;
+	} else if (!extension.equals(other.extension))
+		return false;
 	if (requestid != other.requestid)
 		return false;
 	return true;
@@ -52,34 +59,37 @@ public boolean equals(Object obj) {
 @Override
 public String toString() {
 	return "PendingGrades [requestid=" + requestid + ", gradeformat=" + gradeformat + ", filename=" + filename
-			+ ", file=" + Arrays.toString(file) + "]";
+			+ ", file=" + Arrays.toString(file) + ", extension=" + extension + "]";
 }
 protected String filename;
 protected byte[] file;
 
 
-public PendingGrades(String format,String fname,byte[] files) {
+public PendingGrades(String format,String fname,byte[] files, String extension) {
 	this.gradeformat=format;
 	this.filename=fname;
 	this.file=files;
+	this.extension=extension;
 }
 
 
 
-public PendingGrades(int int1, String string, String string2, byte[] array) {
+public PendingGrades(int int1, String string, String string2, byte[] array, String extension) {
 this.requestid=int1;
 this.gradeformat=string;
 this.filename=string2;
 this.file=array;
+this.extension=extension;
 	// TODO Auto-generated constructor stub
 }
 
 
 
-public PendingGrades(int int1, String string, String string2) {
+public PendingGrades(int int1, String string, String string2, String extension) {
 	this.requestid=int1;
 	this.gradeformat=string;
 	this.filename=string2;
+	this.extension=extension;
 	// TODO Auto-generated constructor stub
 }
 
@@ -108,6 +118,14 @@ public byte[] getFile() {
 }
 public void setFile(byte[] file) {
 	this.file = file;
+}
+
+public String getExtension() {
+	return extension;
+}
+
+public void setExtension(String extension) {
+	this.extension = extension;
 }
 
 

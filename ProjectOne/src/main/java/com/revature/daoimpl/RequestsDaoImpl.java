@@ -377,16 +377,19 @@ public class RequestsDaoImpl {
 		Connection conn = cf.getConnection();
 		for (Part filePart : fileParts) {
 	    	if (filePart.getSize() > 0) {
+	    		//Get file name and extension
 		        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		        String extension = fileName.substring(fileName.lastIndexOf('.')+1, fileName.length());
 		        
 		        //Create InputStream and convert to byte[]
 		        InputStream fileStream = filePart.getInputStream();
 		        byte[] bytes = IOUtils.toByteArray(fileStream);
 		        
-		    	PreparedStatement ps = conn.prepareStatement("INSERT INTO requestfiles VALUES (?, ?, ?)");
+		    	PreparedStatement ps = conn.prepareStatement("INSERT INTO requestfiles VALUES (?, ?, ?, ?)");
 				ps.setInt(1, requestid);
 				ps.setString(2, fileName);
 				ps.setBytes(3, bytes);
+				ps.setString(4, extension);
 				ps.executeUpdate();
 				ps.close();
 	    	}
@@ -400,7 +403,7 @@ public class RequestsDaoImpl {
 		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
 		PendingGrades a=null;
 		while(rs.next()) {
-			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getBytes(4), rs.getString(5));
 			rList.add(a);}
 		System.out.println(rList);
 		return rList;
@@ -414,7 +417,7 @@ public class RequestsDaoImpl {
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			a = new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			a = new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4), rs.getString(5));
 			
 			}
 		System.out.println(a);
@@ -440,4 +443,129 @@ public class RequestsDaoImpl {
 		pstmt.execute();
 			
 		}
+	
+	public String getGradesJSON() throws SQLException {
+		List<PendingGrades> rList=new ArrayList<PendingGrades>();
+		Connection conn=cf.getConnect();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDINGGRADES");
+		PendingGrades a=null;
+		while(rs.next()) {
+			a=new PendingGrades(rs.getInt(1),rs.getString(2),rs.getString(3));
+			rList.add(a);}
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;	
+		
+	}
+	
+	public List<requestfiles> getRequestFiles() throws SQLException {
+		List<requestfiles> rList=new ArrayList<requestfiles>();
+		Connection conn=cf.getConnect();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM requestfiles");
+		requestfiles a=null;
+		while(rs.next()) {
+			a=new requestfiles(rs.getInt(1),rs.getString(2),rs.getBytes(3),rs.getString(4));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+	
+	public String getRequestFilesJSON(int id) throws SQLException {
+		List<requestfiles> rList=new ArrayList<requestfiles>();
+		Connection conn=cf.getConnect();		
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTFILES WHERE USERID=?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		requestfiles a=null;
+		while(rs.next()) {
+			a=new requestfiles(rs.getInt(1),rs.getString(2),rs.getBytes(3),rs.getString(4));
+			rList.add(a);}
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;
+	}
+	
+	
+	
+	public void createRequestFiles(int id, String dname, byte[] file, String ext) throws SQLException{
+	Connection conn=cf.getConnect();
+	PreparedStatement pstmt=conn.prepareStatement("INSERT INTO REQUESTFILES(REQUESTID,DOCNAME,FILE,EXTENSION) values (?,?,?,?)");
+	pstmt.setInt(1, id);
+	pstmt.setString(2, dname);
+	pstmt.setBytes(3, file);
+	pstmt.setString(4,ext);
+	pstmt.execute();
+	
+	
+	}
+	
+	public void deleteRequestFiles(int id) throws SQLException {
+		Connection conn=cf.getConnect();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM REQUESTFILES WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+			
+		}
+	
+	
+	public List<gradespresentations> getGradesPresentations() throws SQLException {
+		List<gradespresentations> rList=new ArrayList<gradespresentations>();
+		Connection conn=cf.getConnect();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM gradespresentations");
+		gradespresentations a=null;
+		while(rs.next()) {
+			a=new gradespresentations(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4),rs.getString(5));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+	
+	
+	public String getGradesPresentationsJSON(int id) throws SQLException {
+		List<gradespresentations> rList=new ArrayList<gradespresentations>();
+		Connection conn=cf.getConnect();
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM GRADESPRESENTATIONS WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		gradespresentations a=null;
+		while(rs.next()) {
+			a=new gradespresentations(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4),rs.getString(5));
+			rList.add(a);}
+		System.out.println(rList);
+		GsonBuilder gboi=new GsonBuilder();
+		Gson gson=gboi.create();			 
+		String JSONObject=gson.toJson(rList);		
+	//	System.out.println(JSONObject);
+		return JSONObject;
+	}
+	
+	
+	
+	public void createGradesPresentations(int id, String format, String dname, byte[] file, String ext) throws SQLException{
+		Connection conn=cf.getConnect();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO GRADESPRESENTATIONS(REQUESTID,FORMAT,DOCNAME,FILE,EXTENSION) values (?,?,?,?,?)");
+		pstmt.setInt(1, id);
+		pstmt.setString(2, format);
+		pstmt.setString(3, dname);
+		pstmt.setBytes(4,file);
+		pstmt.setString(5,ext);
+		pstmt.execute();
+	}
+	
+	public void deleteGradesPresentations(int id) throws SQLException {
+	Connection conn=cf.getConnect();
+	PreparedStatement pstmt=conn.prepareStatement("DELETE FROM GRADESPRESENTATIONS WHERE REQUESTID=?");
+	pstmt.setInt(1, id);
+	pstmt.execute();
+		
+	}
+	
+	
 }
