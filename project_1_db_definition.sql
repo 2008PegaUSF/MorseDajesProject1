@@ -1,6 +1,33 @@
 --Create DB
 create database trms;
 
+--Testing
+select current_date;
+INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE)values(current_date,'Jamaica','No',100.0,'Hard','Big',4,current_time,'I have big stupid','20:01:51','2020-09-10')
+
+insert into pending values (8);
+
+alter table requests
+add firstname varchar;
+
+alter table requests
+add lastname varchar;
+
+insert into pending values (9);
+insert into supervisorapproved values (10);
+
+select * from requests where requestid = (select requestid from pending);
+
+select * from requests where requestid = (select requestid from supervisorapproved);
+
+select * from requests where requestid = (select requestid from departheadapproved);
+
+select * from requests where requestid = (select requestid from bencoapproved);
+
+select * from requests where requestid = (select requestid from awarded);
+
+select * from requests where requestid = (select requestid from denied);
+
 --Create Tables
 create table users (
 	userid serial primary key,
@@ -17,10 +44,6 @@ create table logins (
 	password varchar,
 	userid int
 );
-
-alter table requests
-add requesttime time,
-add justification varchar;
 
 create table requests (
 	requestid serial primary key,

@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Manrope:wght@400;500;600&family=Gayathri&family=Lato&family=Montserrat&family=Nunito:wght@400;600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gayathri&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/ProjectOne/trp.css">
   </head>
   <body>
@@ -17,111 +17,135 @@
         </span>
         <ul id="rightNavbar" class="fright">
             <li class="nav">
-                <h5 id="greeting">Hello, username</h5>
+                <h5 id="greeting"></h5>
             </li>
             <li class="nav">
-                <button id="logout">Log out</button>
+                <form action="logout" method="post">
+            		<button type="submit" id="logout">Log out</button>
+            	</form>
             </li>
         </ul>
     </div>
 
-        <div id="dashboard" class="grid-container">
+               <div id="dashboard" class="grid-container">
             <div>
-                <table id="tabs">
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Reimbursements 101</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Available Funds</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Request Status</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Create Reimbursement Request</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">Upload Grade/ Presentation</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="dashboardTab">View Grades/ Presentations</button>
-                        </td>
-                    </tr>
-                </table>
+	            <form method ="post" action="navigate">
+	                <table id="tabs">
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="1">Reimbursements 101</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="2">Create Reimbursement Request</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="3">Upload Grade/ Presentation</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="4">View Requests</button>
+	                        </td>
+	                    </tr>
+	                </table>
+                </form>
             </div>
+
             <div id="contentHolder">
                 <h2 class="heading">Tuition Reimbursement Request Form</h2>
-                <h6 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h6>
-                <form>
+                <h5 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h5>
+                <form method="post" action="submitRequest" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="First name" required="required">
+                          <input type="text" class="form-control" name="firstName" placeholder="First name" required>
                         </div>
                         <div class="form-group col">
-                          <input type="text" class="form-control" placeholder="Last name" required="required">
+                          <input type="text" class="form-control" name="lastName" placeholder="Last name" required>
                         </div>
                     </div>
-                    <h5>Event Details</h5>
+                    <h5>-- Event Details --</h5>
                     <div class="form-row">
                         <div class="form-group col">
-                          <input type="date" class="form-control" required="required">
+                          <input type="date" class="form-control" name="eventDate" required>
                         </div>
                         <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                          <input type="address" class="form-control" required="required">
+                            <input type="time" class="form-control" name="eventTime" required>
                         </div>
-                        <div class="form-group col">
-                            <input type="time" class="form-control" required="required">
-                          </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                          <input type="text" class="form-control" name="location" placeholder="123 Main St, Townsville, Texas 75007" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="cost" class="rform">Cost:</label>
+                            <input nametype="number" class="form-control" name="cost" placeholder="0.00" required>
                         </div>
                         <div class="form-group col">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <label for="eventType" class="rform">Event Type:</label>
+                            <select class="form-control" name="eventType" required>
+                                <option>University course</option>
+                                <option>Seminar</option>
+                                <option>Certification prep</option>
+                                <option>Certification</option>
+                                <option>Technical training</option>
+                                <option>Other</option>
                             </select>
                         </div>
+                        <div class="form-group col">
+                            <p class="rform">Grading Format:</p>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="grade" name="gradingFormat" value="grade">
+                                <label for="grade" class="custom-control-label rform">Grade</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="presentation" name="gradingFormat" value="presentation"> 
+                                <label for="presentation" class="custom-control-label rform">Presentation</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="description" class="rform">Event Description:</label>
+                            <textarea class="form-control" name="description" rows="3" required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Example textarea</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="justification" class="rform">Work-Related Justification:</label>
+                            <textarea class="form-control" name="justification" rows="3" required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <h5>-- Optional Information --</h5>
+                    <div class="form-row">
+                        <div class="form-group col attachments">
+                            <label for="eventFile" class="rform">Event-related attachments:</label>
+                            <input type="file" name="file" class="form-control-file" accept=".pdf, .png, .jpeg, .txt, .doc" multiple>
+                            <p id="tiny" style="font-size: 13px">(.pdf, .png, .jpeg, .txt, or .doc)<br>
+                            	Tip: Use Ctrl + click to select multiple files
+                            </p>
+                        </div>
+                        <div class="form-group col attachments">
+                            <label for="approvalFile" class="rform">Reimbursement approval (.msg only):</label>
+                            <input type="file" name="file" class="form-control-file" accept=".msg">
+                        </div>
+                        <div class="form-group col">
+                            <label for="missedHours" class="rform">Missed work time (in hours):</label>
+                            <input type="number" name="missedHours" class="form-control-file">
+                        </div>
                     </div>
-                  </form>
+                    <div class="form-row bottomrow">
+                        <div class="form-group col">
+                            <input type="submit" class="form-control">
+                        </div>
+                    </div>
+                </form>
+               
             </div>
         </div>
     <!-- Optional JavaScript -->

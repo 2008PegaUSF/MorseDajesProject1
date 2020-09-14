@@ -1,5 +1,7 @@
 body {
-    background-color: #94B1D1;
+    background-image: url("pencils.jpg");
+    background-position: center;
+    background-size: cover;
     text-align: center;
 }
 
@@ -7,16 +9,24 @@ body {
     float: right;
 }
 
+.fleft {
+    float: left;
+}
+
+.taleft {
+    text-align: left;
+}
+
 #navbar {
     background-color: #001933;
-    height: 45px;
+    height: 35px;
     width: 100%;
-    padding: 12px 15px 10px;
+    padding: 7px 10px 5px;
 }
 
 #brand {
     font-family: 'Gayathri', sans-serif;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 400;
     float: left;
     color: white; 
@@ -25,7 +35,7 @@ body {
 
 #rightNavbar {
     float: right;
-    margin-top: 0;
+    margin-top: -4px;
     height: 33px;
 }
 
@@ -39,18 +49,29 @@ li.nav{
     color: white;
 }
 
+#failedLogin {
+    color: red;
+    margin-top: 30px;
+    margin-left: -4%;
+}
+
 #logout {
     background-color: #001933;
     border: 1px solid white;
     border-radius: 10px;
     font-size: 12px;
-    margin-top: 3px;
+    padding-bottom: 4px;
+    margin-top: -2px;
 }
 
 button {
-    background-color: #2E489E;
+    background-color: #001933;
     color: #f7f7f7;
     border: none;
+}
+
+button:hover {
+    background-color: #020e21;
 }
 
 h1 {
@@ -69,9 +90,9 @@ h1 {
 }
 
 .signIn {
-    height: 42px;
+    height: 40px;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 17px;
     margin-left: 10px;
 }
 
@@ -108,7 +129,19 @@ button:focus {
 
 .dashboardTab {
     border: none;
-    height: 1in;
+    height: 1.5in;
+    width: 2in;
+    float: left;
+    margin: 0px;
+    font-family: sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 2px 1px 4px black;
+}
+
+.supDashboardTab {
+    border: none;
+    height: 3.03in;
     width: 2in;
     float: left;
     margin: 0px;
@@ -119,23 +152,27 @@ button:focus {
 }
 
 #dashboard {
-    margin: 6% 10% 7%;
+    height: 6in;
+    width: 80%;
+    margin: 7% 10% 3%; 
+    box-shadow: -1px 3px 30px 1px black;
 }
 
 #tabs td {
-    border: 2px solid rgb(41, 41, 41);
+    border: 2px solid #6a717d;
     border-right: none;
     padding: 0px;
 }
 
 #contentHolder {
-    height: 6.115in;
+    height: 100%;  
     width: 100%;
     background-color:#F5F9FF;
     float: inline-start;
     padding: 20px 20px;
-    overflow: scroll;
-    text-align: left;
+    overflow: scroll!important;
+    text-align: center;
+    max-height: 6.09in;
 }
 
 .heading {
@@ -153,6 +190,60 @@ button:focus {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 100fr;
     grid-gap: 0px;
+}
+
+.rform {
+    font-size: 12pt;
+}
+
+.attachments {
+    text-align: left;
+}
+
+#tiny {
+	font-size: 13px;
+}
+
+.bottomrow {
+
+    display: inline;
+}
+
+#upload {
+    margin-top: 15%;
+}
+
+.supTable {
+    width: 200%;
+    border: 2px solid grey;
+}
+
+.supTable th {
+    padding: 10px;
+    min-width: .7in;
+    border: 3px solid grey;
+    text-align: center;
+}
+
+.supTable td {
+    padding: 10px;
+    border: 3px solid grey;
+}
+
+.supTable tr:nth-child(odd) {
+    background-color: #c7c6f7;
+}
+
+.supTable tr:nth-child(even) {
+    background-color: #e8e8ff;
+}
+
+.contain {
+    max-width: 80%;
+}
+
+#grades {
+    width: fit-content;
 }

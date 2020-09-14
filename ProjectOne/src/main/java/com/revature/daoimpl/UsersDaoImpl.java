@@ -17,19 +17,31 @@ public class UsersDaoImpl implements UsersDao {
 public static ConnFactory cf = ConnFactory.getInstance();
 
 	public List<Users> getUsers() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Users> uList=new ArrayList<Users>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from users");
+		Users a=null;
+		while(rs.next()) {
+			a=new Users(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getString(7));
+			uList.add(a);}
+		return uList;
 	}
 
-	public List<Users> getUsersByRequestId(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Users getUserByUserId(int id) throws SQLException {
+		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
+		PreparedStatement pstmt= conn.prepareStatement("select * from users where userid = ?");
+		pstmt.setInt(1, id);
+		Users a=null;
+		//filling the user object with the data from our query
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			a = new Users(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getString(7));
+		}
+		//System.out.println(a);
+		return a;
 	}
 
-	public Users getUser(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public void login() throws SQLException {
 		// TODO Auto-generated method stub
@@ -51,13 +63,41 @@ public static ConnFactory cf = ConnFactory.getInstance();
 		
 	}
 
-	public void addLoginTest(String s, String p) throws SQLException{
-		Connection conn= cf.getConnection();
-		PreparedStatement ptsmt= conn.prepareStatement("INSERT INTO LOGINS(USERNAME,PASSWORD) values(?,?)");
-		ptsmt.setString(1, s);
-		ptsmt.setString(2, p);
-		ptsmt.execute();
-	
+
+	public Users getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Users getUserByUsername(String uname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Logins getLoginById(int id) throws SQLException {
+		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM LOGINS WHERE USERID= ?");
+		pstmt.setInt(1, id);
+		Logins a=null;
+		//filling the user object with the data from our query
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			a = new Logins(rs.getString(1), rs.getString(2),rs.getInt(3));
+			
+			}
+		return a;
+	}
+
+	public List<Logins> getLogins() throws SQLException {
+		List<Logins> logList=new ArrayList<Logins>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM LOGINS");
+		Logins a=null;
+		while(rs.next()) {
+			a=new Logins(rs.getString(1),rs.getString(2),rs.getInt(3));
+			logList.add(a);}
+		return logList;
 	}
 	
 	public Logins getLoginByName(String uname) throws SQLException {
@@ -75,40 +115,26 @@ public static ConnFactory cf = ConnFactory.getInstance();
 				
 	}
 
-	public Users getUserByEmail(String email) {
+	public List<Users> getUsersByRequestId(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Users getUserByUsername(String uname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void getLoginById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public List<Logins> getLogins() throws SQLException {
-		List<Logins> logList=new ArrayList<Logins>();
+	public void changeBalance(double d, int id) throws SQLException {
 		Connection conn=cf.getConnection();
-		Statement stmt=conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM LOGINS");
-		Logins a=null;
-		while(rs.next()) {
-			a=new Logins(rs.getString(1),rs.getString(2),rs.getInt(3));
-			logList.add(a);}
-		System.out.println(logList);
-		return logList;
+		PreparedStatement pstmt=conn.prepareStatement("UPDATE USERS SET BALANCE=BALANCE+? WHERE USERID=?");
+		pstmt.setDouble(1, d);
+		pstmt.setInt(2, id);
+		pstmt.execute();		
+	}
+
+	@Override
+	public Users getUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public static void main(String[] args) {
-		UsersDaoImpl udi = new UsersDaoImpl();
-		try {
-			System.out.println(udi.getLoginByName("Jesse"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }
+
+	
+
