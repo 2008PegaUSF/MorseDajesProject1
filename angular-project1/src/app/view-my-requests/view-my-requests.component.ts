@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { REQUESTS } from "../mock-requests";
+import { RequestService } from "../request.service";
 
 @Component({
   selector: 'app-view-my-requests',
@@ -10,7 +11,8 @@ export class ViewMyRequestsComponent implements OnInit {
 
   requests = REQUESTS;
 
-  constructor() { }
+  constructor(private requestService: RequestService) {
+  }
 
   ngOnInit(): void {
   }

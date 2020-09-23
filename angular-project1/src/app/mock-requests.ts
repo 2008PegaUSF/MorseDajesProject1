@@ -1,10 +1,10 @@
 import { Request } from "./request";
 
-export const REQUESTS: Request[] = [
+export let REQUESTS: Request[] = [
     {
         id: 1,
         eventDate: "2020-10-30",
-        eventTime: "13:00pm",
+        eventTime: "13:00:00",
         location: "USF",
         description: "Revature Training",
         cost: 2700,
@@ -15,6 +15,23 @@ export const REQUESTS: Request[] = [
         firstName: "Dave",
         lastName: "Draper",
         projectedAmount: 1800,
+        awardedAmount: 0,
+        status: "pending"
+    },
+    {
+        id: 2,
+        eventDate: "2020-11-28",
+        eventTime: "17:00:00",
+        location: "Big Texas",
+        description: "Big Iron",
+        cost: 0,
+        gradingFormat: "Presentation",
+        eventType: "Seminar",
+        userid: 0,
+        justification: "Big Iron",
+        firstName: "Arizona",
+        lastName: "Ranger",
+        projectedAmount: 0,
         awardedAmount: 0,
         status: "pending"
     }
