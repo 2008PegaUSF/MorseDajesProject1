@@ -1,1 +1,34 @@
-<p>view-my-requests works!</p>
+<app-navbar></app-navbar>
+
+<div id="dashboard" class="grid-container">
+    <app-employee-tabs></app-employee-tabs>
+
+    <div id="contentHolder">
+        <h2 class="heading">Past Requests</h2>
+        <h5 class="subheading">View your previously reimbursement requests below. You may also cancel a request.</h5>
+        <form action="cancelRequest" method="post">
+            <div class="form-row">
+                <div class="form-group col attachments">
+                    <table class="supTable" id="RequestTable">
+                        <tr>
+                            <th></th>
+                            <th>Request ID</th>
+                            <th>Event Date</th>
+                            <th>Event Type</th>
+                            <th>Description</th>
+                            <th>Grading Format</th>
+                            <th>Projected Reimbursement Amount</th>
+                            <th>Reimbursement Awarded</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <h5>Cancel the selected request(s)?</h5>
+                    <input type="submit" class="form-control" value="Yes, Cancel Request(s)">
+                </div>
+            </div>
+        </form>              
+    </div>
+</div> 
