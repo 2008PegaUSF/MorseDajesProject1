@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackgroundComponent } from './background.component';
+import { SupervisorTabsComponent } from './supervisor-tabs.component';
 
-describe('BackgroundComponent', () => {
-  let component: BackgroundComponent;
-  let fixture: ComponentFixture<BackgroundComponent>;
+describe('SupervisorTabsComponent', () => {
+  let component: SupervisorTabsComponent;
+  let fixture: ComponentFixture<SupervisorTabsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BackgroundComponent ]
+      declarations: [ SupervisorTabsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackgroundComponent);
+    fixture = TestBed.createComponent(SupervisorTabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
