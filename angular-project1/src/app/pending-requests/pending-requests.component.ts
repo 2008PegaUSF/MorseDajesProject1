@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { REQUESTS } from "../mock-requests";
-import { RequestService } from "../request.service";
 
 @Component({
   selector: 'app-pending-requests',
