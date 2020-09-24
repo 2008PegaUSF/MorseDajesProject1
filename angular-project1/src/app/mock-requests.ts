@@ -24,16 +24,16 @@ export let REQUESTS: Request[] = [
         eventTime: "17:00:00",
         location: "Big Texas",
         description: "Big Iron",
-        cost: 0,
+        cost: 1000,
         gradingFormat: "Presentation",
         eventType: "Seminar",
-        userid: 0,
+        userid: 2,
         justification: "Big Iron",
         firstName: "Arizona",
         lastName: "Ranger",
-        projectedAmount: 0,
-        awardedAmount: 0,
-        status: "pending"
+        projectedAmount: 900,
+        awardedAmount: 900,
+        status: "awarded"
     }
 ]
 

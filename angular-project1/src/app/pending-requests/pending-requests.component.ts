@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { REQUESTS } from "../mock-requests";
+import { RequestService } from "../request.service";
 
 @Component({
   selector: 'app-pending-requests',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendingRequestsComponent implements OnInit {
 
-  constructor() { }
+  requests = REQUESTS;
+
+  constructor(private requestService: RequestService) {
+  }
 
   ngOnInit(): void {
   }
