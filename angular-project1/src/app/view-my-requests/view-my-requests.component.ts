@@ -12,8 +12,6 @@ export class ViewMyRequestsComponent implements OnInit {
 
   userid: number = 1;
 
-  
-
   performFilter(userid: number): Request[]{
   
     return this.requests.filter(

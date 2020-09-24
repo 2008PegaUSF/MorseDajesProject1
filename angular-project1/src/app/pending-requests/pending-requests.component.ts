@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Request } from "../request";
+import { REQUESTS } from "../mock-requests";
+import { RequestService } from "../request.service";
 
 @Component({
   selector: 'app-pending-requests',
@@ -7,15 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendingRequestsComponent implements OnInit {
 
-  requests = REQUESTS;
+  status: string = "pending";
 
-  filteredRequests = this.requests.filter(
-    function (d){
-      return d.status == "pending";
-    }
-  );
+  performFilter(userid: number): Request[]{
+  
+    return this.requests.filter(
+
+      (request: Request) => request.status == this.status
+    );
+  }
+
+  requests: Request[];
+  filteredRequests: Request[];
 
   constructor(private requestService: RequestService) {
+    this.requests = REQUESTS;
+    this.filteredRequests = this.performFilter(2)
   }
 
   ngOnInit(): void {
