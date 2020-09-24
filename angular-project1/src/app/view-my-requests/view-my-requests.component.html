@@ -20,7 +20,7 @@
                             <th>Projected Reimbursement Amount</th>
                             <th>Reimbursement Awarded</th>
                         </tr>
-                        <tr *ngFor="let request of requests">
+                        <tr *ngFor="let request of filteredRequests">
                             <td><input type="checkbox"></td>
                             <td>{{request["id"]}}</td>
                             <td>{{request["eventDate"]}}</td>

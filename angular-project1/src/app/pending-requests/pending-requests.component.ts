@@ -11,6 +11,12 @@ export class PendingRequestsComponent implements OnInit {
 
   requests = REQUESTS;
 
+  filteredRequests = this.requests.filter(
+    function (d){
+      return d.status == "pending";
+    }
+  );
+
   constructor(private requestService: RequestService) {
   }
 
