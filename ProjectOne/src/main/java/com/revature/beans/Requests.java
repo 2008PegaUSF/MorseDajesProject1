@@ -90,6 +90,18 @@ public class Requests {
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
 	}
+	public double getProjectedamount() {
+		return projectedamount;
+	}
+	public void setProjectedamount(double projectedamount) {
+		this.projectedamount = projectedamount;
+	}
+	public double getAwardedamount() {
+		return awardedamount;
+	}
+	public void setAwardedamount(double awardedamount) {
+		this.awardedamount = awardedamount;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -228,5 +240,26 @@ public class Requests {
 		this.eventDate = eventDate;
 		this.projectedamount = projectedamount;
 		this.awardedamount = awardedamount;
+	}
+	
+	public Requests(int requestid, String requestDate, String location, String description, double cost,
+			String gradingFormat, String eventType, int userId, String requestTime, String justification,
+			String eventTime, String eventDate, String firstname, String lastname, double projectedamount) {
+		super();
+		this.requestid = requestid;
+		this.requestDate = requestDate;
+		this.location = location;
+		this.description = description;
+		this.cost = cost;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.UserId = userId;
+		this.requestTime = requestTime;
+		this.justification = justification;
+		this.eventTime = eventTime;
+		this.eventDate = eventDate;
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.projectedamount = projectedamount;
 	}
 }

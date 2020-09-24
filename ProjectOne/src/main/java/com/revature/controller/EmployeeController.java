@@ -56,11 +56,38 @@ public class EmployeeController {
 			date = "'"+date+"'";
 			time = "'"+time+":00'";
 			
+			//Calculate projected reimbursement amount
+			double projectedAmount = 0;
+			double costAsDouble = Double.parseDouble(cost);
+			
+			switch (eventType) {
+			
+			case "University course": projectedAmount= costAsDouble * 0.8;
+				break;
+				
+			case "Seminar": projectedAmount= costAsDouble * 0.6;
+				break;
+				
+			case "Certification prep": projectedAmount= costAsDouble * 0.75;
+				break;
+				
+			case "Certification": projectedAmount= costAsDouble;
+				break;
+			
+			case "Technical training": projectedAmount= costAsDouble * 0.9;
+				break;
+			
+			case "Other": projectedAmount= costAsDouble * 0.3;
+				break;
+				
+			default: System.out.println("Event type error.");
+			}
+			
 			RequestsDaoImpl rdi = new RequestsDaoImpl();
 			try {				
 				
 				//Create request
-				rdi.createRequest(location, description, Double.parseDouble(cost), gradingFormat, eventType, userid, justification, time, date, firstName, lastName);
+				rdi.createRequest(location, description, Double.parseDouble(cost), gradingFormat, eventType, userid, justification, time, date, firstName, lastName,projectedAmount);
 				Requests r = rdi.getLastRequest();
 				int requestid = r.getRequestid();
 				
@@ -190,13 +217,6 @@ public class EmployeeController {
 		} else {
 			
 			//Get the value of the request ID from the radio button selected
-			String[] requestIdVal = request.getParameterValues("selection");
-			//Convert to int
-			//int requestID = Integer.parseInt(requestIdVal[0]);
-			
-			//Get grading format
-			//String format = request.getParameter("gradingFormat");
-			
 			String[] selections = request.getParameterValues("selection");
 			int[] requestids = new int[selections.length];
 			
@@ -206,10 +226,7 @@ public class EmployeeController {
 		    
 			for (int requestid : requestids) {
 				try {
-					rdi.deletePending(requestid);
-					rdi.deleteBencoApproved(requestid);
-					rdi.deleteDepartmentHeadApproved(requestid);
-					rdi.deleteSupervisorApproved(requestid);
+					rdi.deleteRequest(requestid);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -218,5 +235,4 @@ public class EmployeeController {
 			request.getRequestDispatcher("/viewGrades.html").forward(request, response);
 		}
 	}
-
 }

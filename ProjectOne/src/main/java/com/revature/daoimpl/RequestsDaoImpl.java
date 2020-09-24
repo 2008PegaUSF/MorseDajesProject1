@@ -315,15 +315,14 @@ public class RequestsDaoImpl {
 
 	public Requests getRequestByReqId(int id) throws SQLException {
 		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
-		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM USERS WHERE REQUESTID= ?");
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTS WHERE REQUESTID= ?");
 		pstmt.setInt(1, id);
 		Requests a=null;
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
-			}
-		//System.out.println(a);
+			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getDouble(16));
+		}
 		return a;//re
 	}
 
@@ -359,6 +358,24 @@ public class RequestsDaoImpl {
 		pstmt.setString(7,justification);
 		pstmt.setString(8, firstName);
 		pstmt.setString(9, lastName);
+		pstmt.execute();
+	}
+	
+	public void createRequest(String location, String description, double cost,
+		String gradingFormat, String eventType, int userId, String justification,
+		String eventTime, String eventDate,String fname,String lname, double pAmount) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO REQUESTS(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE,FIRSTNAME, LASTNAME,PROJECTEDAMOUNT)values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+",?,?,?)");
+		pstmt.setString(1,location);
+		pstmt.setString(2,description);
+		pstmt.setDouble(3, cost);
+		pstmt.setString(4, gradingFormat);
+		pstmt.setString(5,eventType);
+		pstmt.setInt(6,userId);
+		pstmt.setString(7,justification);
+		pstmt.setString(8, fname);
+		pstmt.setString(9, lname);
+		pstmt.setDouble(10, pAmount);
 		pstmt.execute();
 	}
 
@@ -404,6 +421,13 @@ public class RequestsDaoImpl {
 		pstmt.execute();
 	}
 
+	public void deleteRequest(int id) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM REQUESTS WHERE REQUESTID=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+	}
+	
 	public void deletePending(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
