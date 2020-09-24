@@ -1,3 +1,6 @@
+@import '~bootstrap/dist/css/bootstrap.min.css'; 
+
+
 body {
     background-image: url("pencils.jpg");
     background-position: center;

@@ -9,6 +9,7 @@ import { UploadMyGradeComponent } from './upload-my-grade/upload-my-grade.compon
 import { ViewMyRequestsComponent } from './view-my-requests/view-my-requests.component';
 
 const routes: Routes = [{path: 'login', component: LoginComponent},
+{path: 'login', component: LoginComponent},
 {path: 'employee101', component: Employee101Component},
 {path: 'pendingGrades', component: PendingGradesComponent},
 {path: 'pendingRequests', component: PendingRequestsComponent},
