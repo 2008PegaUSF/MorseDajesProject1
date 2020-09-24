@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendingRequestsComponent implements OnInit {
 
-  constructor() { }
+  requests = REQUESTS;
+
+  filteredRequests = this.requests.filter(
+    function (d){
+      return d.status == "pending";
+    }
+  );
+
+  constructor(private requestService: RequestService) {
+  }
 
   ngOnInit(): void {
   }
