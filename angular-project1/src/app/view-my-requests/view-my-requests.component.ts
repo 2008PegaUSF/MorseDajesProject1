@@ -44,14 +44,14 @@ export class ViewMyRequestsComponent implements OnInit {
     }
 
     this.requests = REQUESTS;
-    this.filteredRequests = this.performFilter(2);
+    this.filteredRequests = this.performFilter(1);
     this.selected = [];
 
   }
 
   constructor(private requestService: RequestService) {
     this.requests = REQUESTS;
-    this.filteredRequests = this.performFilter(2);
+    this.filteredRequests = this.performFilter(1);
     this.selected = [];
   }
 
