@@ -6,37 +6,37 @@
     <div id="contentHolder">
         <h2 class="heading">Tuition Reimbursement Request Form</h2>
         <h5 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h5>
-        <form method="post" action="submitRequest" enctype="multipart/form-data">
+        <form [formGroup]="submitRequestForm" (ngSubmit)="submitRequest()">
             <div class="form-row">
                 <div class="form-group col">
-                  <input type="text" class="form-control" name="firstName" placeholder="First name" required>
+                  <input type="text" class="form-control" formControlName="firstName" placeholder="First name" required>
                 </div>
                 <div class="form-group col">
-                  <input type="text" class="form-control" name="lastName" placeholder="Last name" required>
+                  <input type="text" class="form-control" formControlName="lastName" placeholder="Last name" required>
                 </div>
             </div>
             <h5>-- Event Details --</h5>
             <div class="form-row">
                 <div class="form-group col">
-                  <input type="date" class="form-control" name="eventDate" required>
+                  <input type="date" class="form-control" formControlName="eventDate" required>
                 </div>
                 <div class="form-group col">
-                    <input type="time" class="form-control" name="eventTime" required>
+                    <input type="time" class="form-control" formControlName="eventTime" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
-                  <input type="text" class="form-control" name="location" placeholder="123 Main St, Townsville, Texas 75007" required>
+                  <input type="text" class="form-control" formControlName="location" placeholder="123 Main St, Townsville, Texas 75007" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <label for="cost" class="rform">Cost:</label>
-                    <input nametype="number" class="form-control" name="cost" placeholder="0.00" required>
+                    <input nametype="number" class="form-control" formControlName="cost" placeholder="0.00" required>
                 </div>
                 <div class="form-group col">
                     <label for="eventType" class="rform">Event Type:</label>
-                    <select class="form-control" name="eventType" required>
+                    <select class="form-control" formControlName="eventType" required>
                         <option>University course</option>
                         <option>Seminar</option>
                         <option>Certification prep</option>
@@ -48,11 +48,11 @@
                 <div class="form-group col">
                     <p class="rform">Grading Format:</p>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="grade" name="gradingFormat" value="grade">
+                        <input type="radio" class="custom-control-input" id="grade" formControlName="gradingFormat" value="grade">
                         <label for="grade" class="custom-control-label rform">Grade</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="presentation" name="gradingFormat" value="presentation"> 
+                        <input type="radio" class="custom-control-input" id="presentation" formControlName="gradingFormat" value="presentation"> 
                         <label for="presentation" class="custom-control-label rform">Presentation</label>
                     </div>
                 </div>
@@ -60,13 +60,13 @@
             <div class="form-row">
                 <div class="form-group col">
                     <label for="description" class="rform">Event Description:</label>
-                    <textarea class="form-control" name="description" rows="3" required></textarea>
+                    <textarea class="form-control" formControlName="description" rows="3" required></textarea>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <label for="justification" class="rform">Work-Related Justification:</label>
-                    <textarea class="form-control" name="justification" rows="3" required></textarea>
+                    <textarea class="form-control" formControlName="justification" rows="3" required></textarea>
                 </div>
             </div>
             <h5>-- Optional Information --</h5>

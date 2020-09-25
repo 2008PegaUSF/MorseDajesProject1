@@ -6,7 +6,7 @@
     <div id="contentHolder">
         <h2 class="heading">Grades/Presentations Pending Approval</h2>
         <h5 class="subheading">Please select grades/presentations to approve or deny.</h5>
-        <form method="post" action="recordGradeVerdict">
+        <form [formGroup]="pendingGrades" (ngSubmit)="getGradeVerdict()">
             <div class="form-row">
                 <div class="form-group col attachments">
                     <table class="supTable" id='grades'>
@@ -21,7 +21,8 @@
                         <th>Grade/Presentation File</th>
                     </tr>
                     <tr *ngFor='let entry of tableEntries'>
-                        <td>{{entry.requestid}}</td>
+                        <td><input type="checkbox" formArrayName='selections' value='entry.id'></td>
+                        <td>{{entry.id}}</td>
                         <td>{{entry.firstName}}</td>
                         <td>{{entry.lastName}}</td>
                         <td>{{entry.eventType}}</td>
@@ -35,7 +36,7 @@
             <div class="form-row">
                 <div class="form-group col">
                     <h5>Would you like to APPROVE or DENY the selected request(s)?</h5>
-                    <select class="form-control" name="verdict">''
+                    <select class="form-control" formControlName="verdict">
                         <option>Approve</option>
                         <option>Deny</option>
                     </select>
