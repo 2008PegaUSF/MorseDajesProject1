@@ -9,6 +9,15 @@ export class RequestService {
 
   requests = REQUESTS;
 
+  getById(id: number): Request {
+    for(let i: number = 0; i < REQUESTS.length; i++){
+      if (REQUESTS[i]["id"] == id){
+        return REQUESTS[i];
+      }
+    }
+    return null;
+ } 
+
   get(id: number): Request {
       for(let i: number = 0; i < REQUESTS.length; i++){
         if (REQUESTS[i]["id"] == id){
