@@ -20,21 +20,12 @@ export class PendingGradesComponent implements OnInit {
     tableEntries: Request[] = [];
     selectedGrades: Grade[] = [];
 
-    // let tableEntry {
-    //   requestid: number;
-    //   firstName: string;
-    //   lastName: string;
-    //   eventType: string;
-    //   description: string;
-    //   gradingFormat: string;
-    // };
-
     pendingGrades: FormGroup = this.formBuilder.group({
-    verdict: new FormControl(''),
-    selections: this.formBuilder.array([
-    this.formBuilder.control('')
-    ])
-  });
+      verdict: new FormControl(''),
+      selections: this.formBuilder.array([
+        this.formBuilder.control('')
+      ])
+    });
 
   ngOnInit(): void {
 
