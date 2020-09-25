@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { REQUESTS } from './mock-requests';
-import { Request} from './request';
+import { Request } from './request';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +9,11 @@ export class RequestService {
 
   requests = REQUESTS;
 
-  getById(id: number): Request {
-    for(let i: number = 0; i < REQUESTS.length; i++){
-      if (REQUESTS[i]["id"] == id){
-        return REQUESTS[i];
-      }
-    }
-    return null;
- } 
+  get(): Request[] {
+    return REQUESTS;
+  }
 
-  get(id: number): Request {
+  getById(id: number): Request {
       for(let i: number = 0; i < REQUESTS.length; i++){
         if (REQUESTS[i]["id"] == id){
           return REQUESTS[i];
@@ -41,7 +36,7 @@ export class RequestService {
   remove(id: number): void { 
     for(let i: number = 0; i < REQUESTS.length; i++){
       if (REQUESTS[i]["id"] == id){
-        REQUESTS.splice(id);
+        REQUESTS.splice(i);
         return;
       }
     }

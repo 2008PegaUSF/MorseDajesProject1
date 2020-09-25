@@ -6,6 +6,7 @@ import { REQUESTS } from '../mock-requests';
 import { RequestService } from '../request.service';
 import { Request } from '../request';
 
+
 @Component({
   selector: 'app-pending-grades',
   templateUrl: './pending-grades.component.html',
@@ -26,18 +27,23 @@ export class PendingGradesComponent implements OnInit {
         this.formBuilder.control('')
       ])
     });
+<<<<<<< HEAD
+=======
+
+
+  constructor(private gradeService: GradeService, private requestService: RequestService, /*private sessionService: SessionService*/) { }
+>>>>>>> bbfc249dcc502849f4b85e5b5e09a7b5546ccdbc
 
   ngOnInit(): void {
 
-    this.grades = this.gradeService.get();
-    // let requests = this.requestService.get();
-    this.requests = REQUESTS;
+    let grades = this.gradeService.get();
+    let requests = this.requestService.get();
 
-    for (var grade of this.grades){
-        for (var request of this.requests) {
+    for (var grade of grades){
+        for (var request of requests) {
           if (grade.requestid === request.id){
-            let tableEntry: Request = {
-              id: request.id,
+            let tableEntry = {
+              requestid: request.id,
               firstName: request.firstName,
               lastName: request.lastName,
               eventType: request.eventType,
