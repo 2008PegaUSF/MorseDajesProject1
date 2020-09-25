@@ -20,7 +20,7 @@
                         <th>Reimbursement Awarded</th>
                     </tr>
                     <tr *ngFor="let request of filteredRequests">
-                        <td><input (change)="FieldsChange($event,request['id'])" value="angular" type="checkbox"/></td>
+                        <td><input (change)="FieldsChange($event,request['id'])" value="angular" type="checkbox" /></td>
                         <td>{{request["id"]}}</td>
                         <td>{{request["eventDate"]}}</td>
                         <td>{{request["eventType"]}}</td>
@@ -36,9 +36,9 @@
             <div class="form-group col">
                 <h5>Cancel the selected request(s)?</h5>
                 <button class='form-control' (click)='cancelRequests()'>
-                   Yes, Cancel Request(s)
+                    Yes, Cancel Request(s)
                 </button>
             </div>
-        </div>            
+        </div>
     </div>
-</div> 
+</div>

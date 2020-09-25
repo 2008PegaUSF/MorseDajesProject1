@@ -16,8 +16,8 @@ export class ViewMyRequestsComponent implements OnInit {
   selected: Request[];
 
   // Filter by User ID
-  performFilter(userid: number): Request[]{
-  
+  performFilter(userid: number): Request[] {
+
     return this.requests.filter(
 
       (request: Request) => request.userid == userid
@@ -25,7 +25,7 @@ export class ViewMyRequestsComponent implements OnInit {
   }
 
   // Activate when the checkbox is flipped
-  FieldsChange(values:any,id:number){
+  FieldsChange(values: any, id: number) {
     if (values.currentTarget.checked) {
       this.selected.push(
         this.requestService.getById(id)
@@ -39,10 +39,10 @@ export class ViewMyRequestsComponent implements OnInit {
 
   // Cancel the selected requests
   cancelRequests(): void {
-    for (let i: number = 0; i < this.selected.length; i++){
+    for (let i: number = 0; i < this.selected.length; i++) {
       this.requestService.remove(this.selected[i]["id"]);
     }
-    
+
     this.requests = REQUESTS;
     this.filteredRequests = this.performFilter(2);
     this.selected = [];
