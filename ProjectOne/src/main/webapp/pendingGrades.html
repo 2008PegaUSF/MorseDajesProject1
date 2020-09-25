@@ -20,14 +20,24 @@
                 <h5 id="greeting"></h5>
             </li>
             <li class="nav">
+<<<<<<< HEAD
                 <button id="logout">Log out</button>
+=======
+                <form action="logout" method="post">
+            		<button type="submit" id="logout">Log out</button>
+            	</form>
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
             </li>
         </ul>
     </div>
 
         <div id="dashboard" class="grid-container">
             <div>
+<<<<<<< HEAD
             <form method = "post" action="navigate">
+=======
+                <form method = "post" action="navigate">
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                 <table id="tabs">
                     <tr>
                         <td>
@@ -45,10 +55,18 @@
             <div id="contentHolder">
                 <h2 class="heading">Grades/Presentations Pending Approval</h2>
                 <h5 class="subheading">Please select grades/presentations to approve or deny.</h5>
+<<<<<<< HEAD
                 <form>
                     <div class="form-row">
                         <div class="form-group col attachments">
                             <table class="supTable" id="grades">
+=======
+                <form method="post" action="recordGradeVerdict">
+                    <div class="form-row">
+                        <div class="form-group col attachments">
+                            <table class="supTable" id="grades">
+                            <tr>
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                                 <th></th>
                                 <th>Request ID</th>
                                 <th>First Name</th>
@@ -57,6 +75,7 @@
                                 <th>Description</th>
                                 <th>Grading Format</th>
                                 <th>Grade/Presentation File</th>
+<<<<<<< HEAD
                                 <tr>
                                     <td><input type="checkbox" name="selections" value="0"></td>
                                     <td>0</td>
@@ -67,6 +86,9 @@
                                     <td>Presentation</td>
                                     <td></td>
                                 </tr>
+=======
+                            </tr>
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                             </table>
                         </div>
                     </div>
@@ -88,6 +110,10 @@
             </div>
         </div>
     <!-- Optional JavaScript -->
+<<<<<<< HEAD
+=======
+    <script type="text/JavaScript" src="http://localhost:8080/ProjectOne/pendinggrades.js"></script>
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jtrsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

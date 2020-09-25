@@ -13,6 +13,14 @@ public class Requests {
 	protected String  justification;
 	protected String  eventTime;
 	protected String eventDate;
+<<<<<<< HEAD
+=======
+	protected String firstName;
+	protected String lastName;
+	protected double projectedamount;
+	protected double awardedamount;
+	
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 	public int getRequestid() {
 		return requestid;
 	}
@@ -85,6 +93,7 @@ public class Requests {
 	public void setEventDate(String eventDate) {
 		this.eventDate = eventDate;
 	}
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Requests [requestid=" + requestid + ", requestDate=" + requestDate + ", location=" + location
@@ -98,6 +107,21 @@ public class Requests {
 				+ ", getEventTime()=" + getEventTime() + ", getEventDate()=" + getEventDate() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+=======
+	public double getProjectedamount() {
+		return projectedamount;
+	}
+	public void setProjectedamount(double projectedamount) {
+		this.projectedamount = projectedamount;
+	}
+	public double getAwardedamount() {
+		return awardedamount;
+	}
+	public void setAwardedamount(double awardedamount) {
+		this.awardedamount = awardedamount;
+	}
+	
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -180,9 +204,31 @@ public class Requests {
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
 	public Requests(int requestid,String requestDate, String location, String description, double cost,
 			String gradingFormat, String eventType, int userId, String requestTime, String justification,
 			String eventTime, String eventDate) {
+=======
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public Requests() {
+		super();
+	}
+	public Requests(int requestid, String requestDate, String location, String description, double cost,
+			String gradingFormat, String eventType, int userId, String requestTime, String justification,
+			String eventTime, String eventDate, String firstName, String lastName) {
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		super();
 		this.requestid = requestid;
 		this.requestDate = requestDate;
@@ -196,8 +242,55 @@ public class Requests {
 		this.justification = justification;
 		this.eventTime = eventTime;
 		this.eventDate = eventDate;
+<<<<<<< HEAD
 	}
 	public Requests() {
 		// TODO Auto-generated constructor stub
+=======
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventTime, String eventDate) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventTime = eventTime;
+		this.eventDate = eventDate;
+	}
+	
+	public Requests(int requestid, String description, String gradingFormat, String eventType, String eventDate,
+		double projectedamount, double awardedamount) {
+		super();
+		this.requestid = requestid;
+		this.description = description;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.eventDate = eventDate;
+		this.projectedamount = projectedamount;
+		this.awardedamount = awardedamount;
+	}
+	
+	public Requests(int requestid, String requestDate, String location, String description, double cost,
+			String gradingFormat, String eventType, int userId, String requestTime, String justification,
+			String eventTime, String eventDate, String firstname, String lastname, double projectedamount) {
+		super();
+		this.requestid = requestid;
+		this.requestDate = requestDate;
+		this.location = location;
+		this.description = description;
+		this.cost = cost;
+		this.gradingFormat = gradingFormat;
+		this.eventType = eventType;
+		this.UserId = userId;
+		this.requestTime = requestTime;
+		this.justification = justification;
+		this.eventTime = eventTime;
+		this.eventDate = eventDate;
+		this.firstName = firstname;
+		this.lastName = lastname;
+		this.projectedamount = projectedamount;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 	}
 }

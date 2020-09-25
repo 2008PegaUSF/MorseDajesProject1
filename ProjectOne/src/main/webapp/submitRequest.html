@@ -29,6 +29,7 @@
 
                <div id="dashboard" class="grid-container">
             <div>
+<<<<<<< HEAD
             <form method ="post" action="navigate">
                 <table id="tabs">
                     <tr>
@@ -52,13 +53,42 @@
                         </td>
                     </tr>
                 </table>
+=======
+	            <form method ="post" action="navigate">
+	                <table id="tabs">
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="1">Reimbursements 101</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="2">Create Reimbursement Request</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="3">Upload Grade/ Presentation</button>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <button class="dashboardTab" name="button" value="4">View Requests</button>
+	                        </td>
+	                    </tr>
+	                </table>
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                 </form>
             </div>
 
             <div id="contentHolder">
                 <h2 class="heading">Tuition Reimbursement Request Form</h2>
                 <h5 class="subheading">Please complete and submit the following form in order to request tuition reimbursement.</h5>
+<<<<<<< HEAD
                 <form method="post" action="submitRequest">
+=======
+                <form method="post" action="submitRequest" enctype="multipart/form-data">
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                     <div class="form-row">
                         <div class="form-group col">
                           <input type="text" class="form-control" name="firstName" placeholder="First name" required>
@@ -125,6 +155,7 @@
                     <div class="form-row">
                         <div class="form-group col attachments">
                             <label for="eventFile" class="rform">Event-related attachments:</label>
+<<<<<<< HEAD
                             <p>(.pdf, .png, .jpeg, .txt, or .doc)</p>
                             <input type="file" name="eventFile" class="form-control-file">
                         </div>
@@ -137,6 +168,16 @@
                                 <option>Department head</option>
                                 <option>Benefits Coordinator</option>
                             </select>
+=======
+                            <input type="file" name="file" class="form-control-file" accept=".pdf, .png, .jpeg, .txt, .doc" multiple>
+                            <p id="tiny" style="font-size: 13px">(.pdf, .png, .jpeg, .txt, or .doc)<br>
+                            	Tip: Use Ctrl + click to select multiple files
+                            </p>
+                        </div>
+                        <div class="form-group col attachments">
+                            <label for="approvalFile" class="rform">Reimbursement approval (.msg only):</label>
+                            <input type="file" name="file" class="form-control-file" accept=".msg">
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                         </div>
                         <div class="form-group col">
                             <label for="missedHours" class="rform">Missed work time (in hours):</label>
@@ -145,9 +186,12 @@
                     </div>
                     <div class="form-row bottomrow">
                         <div class="form-group col">
+<<<<<<< HEAD
                             <h5 id="projection">Projected Reimbursement: $0.00</h5>
                         </div>
                         <div class="form-group col">
+=======
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
                             <input type="submit" class="form-control">
                         </div>
                     </div>
