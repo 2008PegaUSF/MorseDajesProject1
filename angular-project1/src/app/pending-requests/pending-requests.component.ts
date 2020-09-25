@@ -29,11 +29,11 @@ export class PendingRequestsComponent implements OnInit {
   FieldsChange(values:any,id:number){
     if (values.currentTarget.checked) {
       this.selected.push(
-        this.requestService.get(id)
+        this.requestService.getById(id)
       );
     } else {
       this.selected.splice(
-        this.selected.indexOf(this.requestService.get(id))
+        this.selected.indexOf(this.requestService.getById(id))
       );
     }
   }

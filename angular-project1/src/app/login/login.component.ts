@@ -38,21 +38,16 @@ ngOnInit() {
   get f() { return this.loginForm.controls; }
 
   login() {  
-  
-    // stop here if form is invalid  
-   
-      for (let i:number =0;i<4;i++) {
-        console.log(this.f.username.value, this.f.password.value);
-        console.log(this.model[i]["username"],this.model[i]["password"]);
-       if (this.f.username.value == this.model[i]["username"] && this.f.password.value == this.model[i]["password"]) {  
-        
-          console.log("Login successful");  
-          localStorage.setItem('isLoggedIn', "true");  
-          localStorage.setItem('token', this.f.username.value);  
-          this.router.navigate([this.returnUrl]);  
-       }  
-         }
+    for (let i:number =0;i<4;i++) {
+      if (this.f.username.value == this.model[i]["username"] && this.f.password.value == this.model[i]["password"]) {  
+      
+        console.log("Login successful");  
+        localStorage.setItem('isLoggedIn', "true");  
+        localStorage.setItem('token', this.f.username.value);  
+        this.router.navigate([this.returnUrl]);  
       }  
-    }  
+    }
+  }  
+}  
 
 

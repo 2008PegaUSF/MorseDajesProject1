@@ -16,8 +16,6 @@ import { Employee101Component } from './employee101/employee101.component';
 import { Supervisor101Component } from './supervisor101/supervisor101.component';
 import { SupervisorTabsComponent } from './supervisor-tabs/supervisor-tabs.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms'; 
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
