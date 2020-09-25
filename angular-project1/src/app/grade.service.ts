@@ -52,13 +52,6 @@ export class GradeService {
           request.awardedAmount = request.projectedAmount;
         }
       }
-  //     REQUESTS.forEach( (request: Request, index: number) => {
-  //       if(request.id === gradeToApprove.requestid) {
-  //         request.status = 'approved';
-  //         request.awardedAmount = request.projectedAmount;
-  //       } 
-  //     }
-  //   }
     }
   }
 
