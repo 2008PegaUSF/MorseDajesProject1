@@ -1,14 +1,28 @@
 package com.revature.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+
+public class SupervisorController {
+	
+	public static void recordRequestVerdict(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
+	
+	public static void recordGradeVerdict(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+=======
 import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Requests;
@@ -250,6 +264,7 @@ public class SupervisorController {
 		}
 		
 		request.getRequestDispatcher("/pendingGrades.html").forward(request, response);
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 	}
 
 }

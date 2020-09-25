@@ -1,6 +1,20 @@
 package com.revature.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.revature.daoimpl.RequestsDaoImpl;
+
+public class EmployeeController {
+
+	public static void getRequestForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+=======
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
@@ -32,6 +46,7 @@ public class EmployeeController {
 	public static UsersDaoImpl udi = new UsersDaoImpl();
 	
 	public static synchronized void getRequestForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		
 		HttpSession sesh = request.getSession(false);
 		if (sesh == null) {
@@ -40,9 +55,13 @@ public class EmployeeController {
 		} else {
 			int userid = (int) sesh.getAttribute("userid");
 			
+<<<<<<< HEAD
+			//Get all form inputs		
+=======
 			//Get all form inputs
 			String firstName = request.getParameter("firstName");
 			String lastName = request.getParameter("lastName");
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 			String date = request.getParameter("eventDate");
 			String time = request.getParameter("eventTime");
 			String location = request.getParameter("location");
@@ -56,6 +75,11 @@ public class EmployeeController {
 			date = "'"+date+"'";
 			time = "'"+time+":00'";
 			
+<<<<<<< HEAD
+			RequestsDaoImpl rdi = new RequestsDaoImpl();
+			try {
+				rdi.createRequest(location,description,Double.parseDouble(cost),gradingFormat,eventType,userid,justification,time,date);
+=======
 			//Calculate projected reimbursement amount
 			double projectedAmount = 0;
 			double costAsDouble = Double.parseDouble(cost);
@@ -98,6 +122,7 @@ public class EmployeeController {
 				 rdi.createPending(requestid);
 				 rdi.insertFiles(fileParts, requestid);
 			
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -106,6 +131,16 @@ public class EmployeeController {
 		}
 	}
 	
+<<<<<<< HEAD
+	public static void getGrade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//Get uploaded file, store it somewhere...as serialized data in DB? Need clarification on this.
+		
+		request.getRequestDispatcher("/uploadGrade").forward(request, response);
+		
+	}
+
+=======
 
 	public static void getGrade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -235,4 +270,5 @@ public class EmployeeController {
 			request.getRequestDispatcher("/viewGrades.html").forward(request, response);
 		}
 	}
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 }

@@ -14,5 +14,8 @@ public class HomeController {
 		
 		rd.forward(request, response);
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 }

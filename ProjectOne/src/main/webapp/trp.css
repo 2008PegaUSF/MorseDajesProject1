@@ -35,7 +35,11 @@ body {
 
 #rightNavbar {
     float: right;
+<<<<<<< HEAD
+    margin-top: 0;
+=======
     margin-top: -4px;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
     height: 33px;
 }
 
@@ -141,7 +145,11 @@ button:focus {
 
 .supDashboardTab {
     border: none;
+<<<<<<< HEAD
+    height: 3in;
+=======
     height: 3.03in;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
     width: 2in;
     float: left;
     margin: 0px;
@@ -152,7 +160,11 @@ button:focus {
 }
 
 #dashboard {
+<<<<<<< HEAD
+    height: 90%;
+=======
     height: 6in;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
     width: 80%;
     margin: 7% 10% 3%; 
     box-shadow: -1px 3px 30px 1px black;
@@ -202,10 +214,13 @@ button:focus {
     text-align: left;
 }
 
+<<<<<<< HEAD
+=======
 #tiny {
 	font-size: 13px;
 }
 
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 .bottomrow {
 
     display: inline;

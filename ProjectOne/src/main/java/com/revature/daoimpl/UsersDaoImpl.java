@@ -122,7 +122,11 @@ public static ConnFactory cf = ConnFactory.getInstance();
 
 	public void changeBalance(double d, int id) throws SQLException {
 		Connection conn=cf.getConnection();
+<<<<<<< HEAD
+		PreparedStatement pstmt=conn.prepareStatement("UPDATE USERS SET BALANCE=BALANCE-? WHERE USERID=?");
+=======
 		PreparedStatement pstmt=conn.prepareStatement("UPDATE USERS SET BALANCE=BALANCE+? WHERE USERID=?");
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		pstmt.setDouble(1, d);
 		pstmt.setInt(2, id);
 		pstmt.execute();		

@@ -15,7 +15,8 @@ const routes: Routes = [
 {path: 'pendingRequests', component: PendingRequestsComponent},
 {path: 'submitRequest', component: SubmitMyRequestComponent},
 {path: 'uploadGrade', component: UploadMyGradeComponent},
-{path: 'viewRequests', component: ViewMyRequestsComponent}];
+{path: 'viewRequests', component: ViewMyRequestsComponent},
+{path: '', redirectTo: '/login', pathMatch: 'full'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

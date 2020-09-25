@@ -1,13 +1,33 @@
 package com.revature.daoimpl;
 
+<<<<<<< HEAD
+import java.sql.Connection;
+import java.sql.Date;
+=======
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
 import java.sql.Connection;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.revature.beans.Awarded;
+import com.revature.beans.BencoApproved;
+import com.revature.beans.Denied;
+import com.revature.beans.DepartheadApproved;
+import com.revature.beans.Pending;
+import com.revature.beans.Requests;
+import com.revature.beans.SupervisorApproved;
+=======
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +41,64 @@ import com.revature.beans.PendingGrades;
 import com.revature.beans.Requests;
 import com.revature.beans.gradespresentations;
 import com.revature.beans.requestfiles;
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 import com.revature.util.ConnFactory;
 
 public class RequestsDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	public List<Requests> getRequests() throws SQLException {
+<<<<<<< HEAD
+			List<Requests> rList=new ArrayList<Requests>();
+			Connection conn=cf.getConnection();
+			Statement stmt= conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM REQUESTS");
+			Requests a=null;
+			while(rs.next()) {
+				a=new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+				rList.add(a);}
+			System.out.println(rList);
+			return rList;
+		}
+
+
+	public List<Pending> getPendings() throws SQLException {
+		List<Pending> rList=new ArrayList<Pending>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM PENDING");
+		Pending a=null;
+		while(rs.next()) {
+			a=new Pending(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+
+	public List<SupervisorApproved> getSuperApproveds() throws SQLException {
+		List<SupervisorApproved> rList=new ArrayList<SupervisorApproved>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM SupervisorApproved");
+		SupervisorApproved a=null;
+		while(rs.next()) {
+			a=new SupervisorApproved(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+
+	public List<DepartheadApproved> getDepartheadApproveds() throws SQLException {
+		List<DepartheadApproved> rList=new ArrayList<DepartheadApproved>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM DepartheadApproved");
+		DepartheadApproved a=null;
+		while(rs.next()) {
+			a=new DepartheadApproved(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+=======
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
 		Statement stmt= conn.createStatement();
@@ -266,10 +338,23 @@ public class RequestsDaoImpl {
 			rList.add(a);
 		}		
 		//System.out.println(rList);
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		return rList;
 	}
 
 
+<<<<<<< HEAD
+	public List<BencoApproved> getBencoApproved() throws SQLException {
+		List<BencoApproved> rList=new ArrayList<BencoApproved>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM BencoApproved");
+		BencoApproved a=null;
+		while(rs.next()) {
+			a=new BencoApproved(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+=======
 	public List<Requests> getBencoApproved() throws SQLException {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
@@ -281,10 +366,36 @@ public class RequestsDaoImpl {
 			rList.add(a);
 		}		
 		//System.out.println(rList);
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		return rList;
 	}
 
 
+<<<<<<< HEAD
+	public List<Denied> getDenieds() throws SQLException {
+		List<Denied> rList=new ArrayList<Denied>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM Denied");
+		Denied a=null;
+		while(rs.next()) {
+			a=new Denied(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+		return rList;
+	}
+
+	public List<Awarded> getAwarded() throws SQLException {
+		List<Awarded> rList=new ArrayList<Awarded>();
+		Connection conn=cf.getConnection();
+		Statement stmt=conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM Awarded");
+		Awarded a=null;
+		while(rs.next()) {
+			a=new Awarded(rs.getInt(1));
+			rList.add(a);}
+		System.out.println(rList);
+=======
 	public List<Requests> getDenied() throws SQLException {
 		List<Requests> rList=new ArrayList<Requests>();
 		Connection conn=cf.getConnection();
@@ -310,19 +421,31 @@ public class RequestsDaoImpl {
 			rList.add(a);
 		}		
 		//System.out.println(rList);
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		return rList;
 	}
 
 	public Requests getRequestByReqId(int id) throws SQLException {
 		Connection conn=cf.getConnection();//selecting all of the users of a certain Id
+<<<<<<< HEAD
+		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM USERS WHERE REQUESTID= ?");
+=======
 		PreparedStatement pstmt= conn.prepareStatement("SELECT * FROM REQUESTS WHERE REQUESTID= ?");
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		pstmt.setInt(1, id);
 		Requests a=null;
 		//filling the user object with the data from our query
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
+<<<<<<< HEAD
+			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+			
+			}
+		System.out.println(a);
+=======
 			a = new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getDouble(16));
 		}
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		return a;//re
 	}
 
@@ -336,7 +459,11 @@ public class RequestsDaoImpl {
 		//filling the arraylist with data from our query
 		ResultSet rs=pstmt.executeQuery();
 		while (rs.next()){
+<<<<<<< HEAD
+			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+=======
 			a= new Requests(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 			rList.add(a);
 			}
 		//returning the arraylist
@@ -345,10 +472,17 @@ public class RequestsDaoImpl {
 
 	public void createRequest(String location, String description, double cost,
 		String gradingFormat, String eventType, int userId, String justification,
+<<<<<<< HEAD
+		String eventTime, String eventDate) throws SQLException {
+		Connection conn=cf.getConnection();
+		PreparedStatement pstmt=conn.prepareStatement("insert into requests(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE) "
+				+ "values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+")");
+=======
 		String eventTime, String eventDate, String firstName, String lastName) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("insert into requests(REQUESTDATE,LOCATION,DESCRIPTION,COST,GRADINGFORMAT,EVENTTYPE,USERID,REQUESTTIME,JUSTIFICATION,EVENTTIME,EVENTDATE,FIRSTNAME,LASTNAME) "
 				+ "values(current_date,?,?,?,?,?,?,current_time,?,"+eventTime+","+eventDate+",?,?)");
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		pstmt.setString(1,location);
 		pstmt.setString(2,description);
 		pstmt.setDouble(3, cost);
@@ -356,6 +490,11 @@ public class RequestsDaoImpl {
 		pstmt.setString(5,eventType);
 		pstmt.setInt(6,userId);
 		pstmt.setString(7,justification);
+<<<<<<< HEAD
+		//pstmt.setTime(8, eventTime); Date and Time are coming from a form with restricted values (not open to injection)
+		//pstmt.setDate(9,eventDate);
+		System.out.println(pstmt.toString());
+=======
 		pstmt.setString(8, firstName);
 		pstmt.setString(9, lastName);
 		pstmt.execute();
@@ -376,6 +515,7 @@ public class RequestsDaoImpl {
 		pstmt.setString(8, fname);
 		pstmt.setString(9, lname);
 		pstmt.setDouble(10, pAmount);
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		pstmt.execute();
 	}
 
@@ -402,6 +542,9 @@ public class RequestsDaoImpl {
 
 	public void createSupervisorApproved(int id) throws SQLException {
 		Connection conn=cf.getConnection();
+<<<<<<< HEAD
+		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO AWARDED(REQUESTID) values (?)");
+=======
 		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO SUPERVISORAPPROVED(REQUESTID) values (?)");
 		pstmt.setInt(1, id);
 		pstmt.execute();
@@ -410,6 +553,7 @@ public class RequestsDaoImpl {
 	public void createDepartmentHeadApproved(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("INSERT INTO DEPARTHEADAPPROVED(REQUESTID) values (?)");
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 		pstmt.setInt(1, id);
 		pstmt.execute();
 	}
@@ -421,6 +565,8 @@ public class RequestsDaoImpl {
 		pstmt.execute();
 	}
 
+<<<<<<< HEAD
+=======
 	public void deleteRequest(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM REQUESTS WHERE REQUESTID=?");
@@ -428,12 +574,15 @@ public class RequestsDaoImpl {
 		pstmt.execute();
 	}
 	
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 	public void deletePending(int id) throws SQLException {
 		Connection conn=cf.getConnection();
 		PreparedStatement pstmt=conn.prepareStatement("DELETE FROM PENDING WHERE REQUESTID=?");
 		pstmt.setInt(1, id);
 		pstmt.execute();
 	}
+<<<<<<< HEAD
+=======
 	
 	public void deleteSupervisorApproved(int id) throws SQLException {
 		Connection conn=cf.getConnection();
@@ -638,4 +787,5 @@ public class RequestsDaoImpl {
 		pstmt.setInt(1, id);
 		pstmt.execute();
 	}
+>>>>>>> a6f2a7d9ee2719c128f0124fc16f63db00bdd600
 }
