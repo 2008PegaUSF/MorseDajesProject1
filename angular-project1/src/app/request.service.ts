@@ -9,7 +9,11 @@ export class RequestService {
 
   requests = REQUESTS;
 
-  get(id: number): Request {
+  get(): Request[] {
+    return REQUESTS;
+  }
+
+  getById(id: number): Request {
       for(let i: number = 0; i < REQUESTS.length; i++){
         if (REQUESTS[i]["id"] == id){
           return REQUESTS[i];
