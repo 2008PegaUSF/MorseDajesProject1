@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { Login } from './login/login.component';
 import { EmployeeTabsComponent } from './employee-tabs/employee-tabs.component';
 import { SubmitMyRequestComponent } from './submit-my-request/submit-my-request.component';
 import { ViewMyRequestsComponent } from './view-my-requests/view-my-requests.component';
@@ -20,7 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    Login,
     EmployeeTabsComponent,
     SubmitMyRequestComponent,
     ViewMyRequestsComponent,
@@ -34,6 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule

@@ -2,21 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';  
 import { Router } from '@angular/router';  
 import { user } from 'src/app/user';  
-import { AuthService } from '../auth.service'  
+import { USERS } from '../mock-users';
+import { AuthService } from '../auth.service' ; 
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
+
 })
-export class LoginComponent implements OnInit {
+export class Login implements OnInit {
 
   constructor(  private formBuilder : FormBuilder,
     private router: Router,
     private authService: AuthService) { 
   
   }
-model : user= {id: 1, firstName:'Jesse', lastName:'Warren',userType: 'Supervisor', balance : 0, reportsto: 3, email:'jtwarrenz@gmail.com',username:"Jesse", password: "Jesse" }
+model: user[]=USERS;
 loginForm: FormGroup;  
 message: string;  
 returnUrl: string;  
@@ -37,21 +40,19 @@ ngOnInit() {
   login() {  
   
     // stop here if form is invalid  
-    if (this.loginForm.invalid) {  
-       return;  
-    }  
-    else {  
-       if (this.f.username.value == this.model.username && this.f.password.value == this.model.password) {  
+   
+      for (let i:number =0;i<4;i++) {
+        console.log(this.f.username.value, this.f.password.value);
+        console.log(this.model[i]["username"],this.model[i]["password"]);
+       if (this.f.username.value == this.model[i]["username"] && this.f.password.value == this.model[i]["password"]) {  
+        
           console.log("Login successful");  
-          //this.authService.authLogin(this.model);  
           localStorage.setItem('isLoggedIn', "true");  
           localStorage.setItem('token', this.f.username.value);  
           this.router.navigate([this.returnUrl]);  
        }  
-    else {  
-       this.message = "Please check your username and password";  
-       }  
+         }
       }  
     }  
 
-}
+
