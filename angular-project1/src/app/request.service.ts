@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { REQUESTS } from './mock-requests';
-import { Request} from './request';
+import { Request } from './request';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class RequestService {
   remove(id: number): void { 
     for(let i: number = 0; i < REQUESTS.length; i++){
       if (REQUESTS[i]["id"] == id){
-        REQUESTS.splice(id);
+        REQUESTS.splice(i);
         return;
       }
     }

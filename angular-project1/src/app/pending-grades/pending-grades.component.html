@@ -20,13 +20,22 @@
                         <th>Grading Format</th>
                         <th>Grade/Presentation File</th>
                     </tr>
+                    <tr *ngFor='let entry of tableEntries'>
+                        <td>{{entry.requestid}}</td>
+                        <td>{{entry.firstName}}</td>
+                        <td>{{entry.lastName}}</td>
+                        <td>{{entry.eventType}}</td>
+                        <td>{{entry.description}}</td>
+                        <td>{{entry.gradingFormat}}</td>
+                        <td></td>
+                    </tr>
                     </table>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col">
                     <h5>Would you like to APPROVE or DENY the selected request(s)?</h5>
-                    <select class="form-control" name="verdict">
+                    <select class="form-control" name="verdict">''
                         <option>Approve</option>
                         <option>Deny</option>
                     </select>
